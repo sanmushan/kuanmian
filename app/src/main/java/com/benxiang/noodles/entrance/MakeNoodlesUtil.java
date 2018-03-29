@@ -33,18 +33,25 @@ public abstract class MakeNoodlesUtil {
     private SerialHelper mCardSerialHelper1;
     private NoodlesSerialReceiver.OnSuccessListener mCardSuccessListener;
     private NoodlesSerialReceiver.OnFailureListener mCardFailureListener;
-    private int errorCount = 0;//出错的次数
+    //出错的次数
+    private int errorCount = 0;
     private int mNumberNoodles;
-    private int[] mNumberNoodlesArr;//做米粉的米粉号
-    private List<String> mNoodleStateArr;//做米粉的口味:如：卤蛋口味，酸辣包口味
-    private boolean isContinue = false;//用于多单多碗，判断循环部分是否都已经执行完：可删除
-    private int mRepeatTimes; //初始值=米粉的数量减1,表示循环部分还需要执行的次数，做的米粉的数量大于等于4会重复选择米粉
+    //做米粉的米粉号
+    private int[] mNumberNoodlesArr;
+    //做米粉的口味:如：卤蛋口味，酸辣包口味
+    private List<String> mNoodleStateArr;
+    //用于多单多碗，判断循环部分是否都已经执行完：可删除
+    private boolean isContinue = false;
+    //初始值=米粉的数量减1,表示循环部分还需要执行的次数，做的米粉的数量大于等于4会重复选择米粉
+    private int mRepeatTimes;
     /**
      * 加热命令的索引，初始值：1,用于获取一碗或者两碗的加热或加汤指令
      */
     private int mIndexHeat;
-    private int mIndexRepeatChoice;//重复选择米粉的次数，用于循环区，初始值：3，若米粉的数量大于4，则在循环区会发送取米粉的指令
-    private int mIndexFinishNumberNoodles;//初始值：0，表示已完成的米粉的索引，每完成一碗，索引加1
+    //重复选择米粉的次数，用于循环区，初始值：3，若米粉的数量大于4，则在循环区会发送取米粉的指令
+    private int mIndexRepeatChoice;
+    //初始值：0，表示已完成的米粉的索引，每完成一碗，索引加1
+    private int mIndexFinishNumberNoodles;
 
     private List<NoodleEventData> mNoodleEventDataArrs;
     protected MakeNoodlesUtil() {
