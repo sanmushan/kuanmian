@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="count_down_tv">#b2b5b5</color>
+    <color name="radiobtn_stroke_normal">#edf5f5</color>
+    <color name="radiobtn_stroke_select">#ed1343</color>
+    <color name="radiobtn_tv_normal">#2e2e2f</color>
+    <color name="radiobtn_tv_select">#FFFFFF</color>
+    <color name="pay_error_tv_bg">#ff8141</color>
+    <color name="order_meal_num">#ececec</color>
+    <color name="order_query_success">#39ae25</color>
+    <color name="order_news">#878787</color>
+    <color name="order_hint">#ee1142</color>
+    <color name="goods_title">#707070</color>
+    <color name="noodle_make_wait">#4b4b4b</color>
+    <color name="noodle_make_wait_bg">#f8f3ea</color>
+    <color name="error_button_text_focus">#51b2f1</color>
+    <color name="app_main_color">#28aef5</color>
+    
+    <color name="goods_detail_normal">#eeeeee</color>
+    <color name="goods_detail_focus">#ff9a01</color>
+    <color name="shopping_cart">#fec207</color>
+
+    //支付
+    <color name="pay_btn_normal">#ffb45a</color>
+    <color name="pay_btn_focus">#fece03</color>
+
+    <color name="ss" >#ffffffff</color>
+</resources>

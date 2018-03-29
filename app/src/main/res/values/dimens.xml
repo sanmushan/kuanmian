@@ -1,0 +1,18 @@
+<resources>
+    <dimen name="text_count_down">24px</dimen>
+    <dimen name="radio_btn">24px</dimen>
+    <dimen name="shopping_cart_tv">42px</dimen>
+    <dimen name="btn_payment">38px</dimen>
+    <dimen name="hint">20px</dimen>
+    <dimen name="weight_padding_normal">24px</dimen>
+    <dimen name="weight_padding_small">18px</dimen>
+    <dimen name="text_size_large">36px</dimen>
+    <dimen name="text_size_normal">24px</dimen>
+    <dimen name="line_pxace_normal">12px</dimen>
+    <dimen name="line_space_normal">12dp</dimen>
+
+    <dimen name="dialog_corners">20px</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+</resources>

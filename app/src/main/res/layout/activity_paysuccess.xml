@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@drawable/goods_complete"
+    android:gravity="center_horizontal"
+    android:layout_width="887px"
+    android:layout_height="436px">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="49px"
+            android:background="@drawable/ig_complete" />
+
+        <TextView
+            style="@style/tv_goods_complete"
+            android:layout_marginTop="48px"
+            android:textColor="@color/order_query_success"
+            android:text="@string/payment_success"/>
+
+        <TextView
+            style="@style/tv_goods_complete"
+            android:layout_marginTop="60px"
+            android:textColor="@color/black"
+            android:text="@string/take_meal"/>
+        <Button
+            android:id="@+id/payment_confrim"
+            android:layout_width="310px"
+            android:layout_height="78px"
+            android:layout_marginTop="56px"
+            android:visibility="gone"
+            android:background="@drawable/btn_command_bg"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/confirm"
+            android:textColor="@color/white"
+            android:textSize="@dimen/shopping_cart_tv" />
+</LinearLayout>

@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:layout_width="1278px"
+        android:layout_height="match_parent"
+        android:background="@drawable/payment_bg_left">
+
+        <include layout="@layout/common_head_view" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="85px"
+            android:layout_marginTop="130px"
+            android:gravity="center"
+            android:text="@string/order_desc"
+            android:textColor="@color/noodle_make_wait"
+            android:textSize="@dimen/text_size_large" />
+
+        <LinearLayout
+            android:id="@+id/ll_goods_title"
+            android:layout_width="match_parent"
+            android:layout_height="61px"
+            android:layout_marginTop="210px"
+            android:background="@color/goods_detail_focus"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/goods_title_tv"
+                android:text="@string/goods_name_desc" />
+
+            <TextView
+                style="@style/goods_title_tv"
+                android:text="@string/goods_num_desc" />
+
+            <TextView
+                style="@style/goods_title_tv"
+                android:layout_marginRight="15px"
+                android:text="@string/goods_sum_desc" />
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycle_view"
+            android:layout_width="match_parent"
+            android:layout_height="510px"
+            android:layout_below="@+id/ll_goods_title"
+            android:layout_marginRight="15px"
+            android:layout_marginTop="20px"
+            android:scrollbarThumbVertical="@drawable/scrollbar_thumb_bg"
+            android:scrollbarTrackVertical="@drawable/scrollbar_track_bg"
+            android:scrollbars="vertical">
+
+        </android.support.v7.widget.RecyclerView>
+
+        <TextView
+            android:id="@+id/pay_total"
+            android:layout_width="match_parent"
+            android:layout_height="61px"
+            android:layout_below="@+id/recycle_view"
+            android:layout_marginTop="41px"
+            android:background="@color/goods_detail_focus"
+            android:gravity="right"
+            android:paddingRight="40px"
+            android:text="@string/payment_total"
+            android:textColor="@color/white"
+            android:textSize="@dimen/shopping_cart_tv" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/pay_total"
+            android:layout_marginTop="20px"
+            android:gravity="right"
+            android:privateImeOptions="25px"
+            android:text="@string/payment_confirm_hint"
+            android:textColor="@color/white"
+            android:textSize="@dimen/shopping_cart_tv" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/payment_bg_rigth">
+
+        <LinearLayout
+            android:id="@+id/ll_pay_qrcode"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:visibility="gone"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/pay_code_total"
+                style="@style/tv_pay_news"
+                android:layout_marginTop="260px"
+                android:text="@string/payment_sum"
+             />
+
+         <!--   <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="95px"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/payment_code"
+                    android:layout_width="274px"
+                    android:layout_height="273px" />-->
+            <FrameLayout
+                android:id="@+id/layout_qr_code"
+                android:layout_width="390px"
+                android:layout_height="426px"
+                android:layout_marginTop="120px"
+                android:background="@drawable/code_bg"
+                >
+            <ImageView
+                android:layout_gravity="center"
+                android:id="@+id/iv_qr_code"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                />
+            <View
+                android:layout_marginTop="65px"
+                android:layout_marginBottom="60px"
+                android:layout_gravity="top"
+                android:id="@+id/view_scan_line"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="3px"
+                android:background="@drawable/code_line_bg"
+                />
+            </FrameLayout>
+            <!--</LinearLayout>-->
+
+            <!--  <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="92px"
+                  android:gravity="center"
+                  android:orientation="horizontal">
+
+                  <ImageView
+                      android:background="@drawable/pay_alipay"
+                      android:layout_width="128px"
+                      android:layout_height="44px" />
+
+                  <ImageView
+                      android:background="@drawable/pay_weixin"
+                      android:layout_marginLeft="63px"
+                      android:layout_width="128px"
+                      android:layout_height="44px" />
+              </LinearLayout>-->
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_pay_way"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/tv_pay_news"
+                android:layout_marginTop="260px"
+                android:text="请选择您的支付方式" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="320px"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btn_alipay"
+                    style="@style/btn_pay"
+                    android:text="@string/alipay"
+                    android:onClick="srartPay"/>
+
+                <Button
+                    style="@style/btn_pay"
+                    android:id="@+id/btn_weixinpay"
+                    android:layout_marginTop="54px"
+                    android:text="@string/weixinpay"
+                    android:onClick="srartPay"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

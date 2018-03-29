@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="80px"
+    android:gravity="center_vertical">
+    <TextView
+        android:id="@+id/tv_select_goods_name"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size_normal"
+        android:textColor="@color/radiobtn_tv_normal"/>
+    <TextView
+        android:id="@+id/tv_select_goods_num"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size_normal"
+        android:textColor="@color/radiobtn_tv_normal"/>
+    <TextView
+        android:id="@+id/tv_select_goods_price"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size_normal"
+        android:textColor="@color/radiobtn_tv_normal"/>
+</LinearLayout>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/goods_complete_bg"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="995px"
+        android:layout_height="604px"
+        android:background="@drawable/goods_complete"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="68px"
+            android:background="@drawable/ig_complete" />
+
+        <TextView
+            android:id="@+id/tv_make_nums"
+            style="@style/tv_goods_complete"
+            android:layout_marginTop="70px"
+            android:textColor="@color/order_hint"
+            />
+        <TextView
+            style="@style/tv_goods_complete"
+            android:layout_marginTop="58px"
+            android:textColor="@color/black"
+            android:text="@string/take_meal"/>
+        <TextView
+            android:id="@+id/tv_count_time"
+            style="@style/tv_goods_complete"
+            android:layout_marginTop="76px"
+            android:textColor="@color/black" />
+    </LinearLayout>
+</LinearLayout>

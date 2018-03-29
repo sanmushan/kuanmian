@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="92px"
+    android:gravity="center_vertical"
+    >
+    <ImageView
+        android:id="@+id/goods_selected_icon"
+        android:layout_marginLeft="48px"
+        android:layout_width="30px"
+        android:layout_height="30px"
+        android:src="@drawable/in_stock"/>
+    <TextView
+        android:layout_toRightOf="@+id/goods_selected_icon"
+        android:id="@+id/tv_select_goods_name"
+        android:layout_marginLeft="28px"
+        style="@style/tv_select_goods"
+        />
+    <TextView
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="299px"
+        android:id="@+id/tv_select_goods_num"
+        android:layout_marginLeft="323px"
+        style="@style/tv_select_goods"/>
+    <TextView
+        android:layout_alignParentRight="true"
+        android:id="@+id/tv_select_goods_price"
+        android:layout_marginRight="80px"
+        style="@style/tv_select_goods"/>
+    <View
+        android:id="@+id/line_no_good"
+        android:layout_marginTop="18px"
+        android:layout_marginLeft="88px"
+        android:layout_width="650px"
+        android:layout_height="1px"
+        android:background="@color/goods_detail_focus" />
+    <TextView
+        android:layout_below="@+id/tv_select_goods_name"
+        android:id="@+id/tv_select_no_goods_hint"
+        android:layout_marginLeft="108px"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25px"
+        android:gravity="center"
+        android:textColor="@color/goods_detail_focus"
+        android:text="材料不足，无法制作"/>
+</RelativeLayout>

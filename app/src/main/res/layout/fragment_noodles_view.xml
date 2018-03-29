@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_goods_stail"
+        android:scrollbars="vertical"
+        android:scrollbarThumbVertical="@drawable/scrollbar_thumb_bg"
+        android:scrollbarTrackVertical="@drawable/scrollbar_track_bg"
+        android:layout_marginLeft="50px"
+        android:layout_marginRight="26px"
+        android:layout_marginBottom="50px"
+        android:paddingLeft="100px"
+        android:paddingRight="100px"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

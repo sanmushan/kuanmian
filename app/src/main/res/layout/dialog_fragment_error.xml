@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@null"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/TextViewErrorTip"
+            android:background="@android:color/transparent"
+            android:padding="@dimen/weight_padding_normal"
+            android:textColor="#000000"
+            tools:text="@string/desc_exception_tip" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/noodle_make_wait" />
+        <!--  <com.benxiang.noodles.view.AutoSplitTextView
+              android:lineSpacingExtra="@dimen/line_space_normal"
+              android:id="@+id/tv_exception_tip"
+              android:layout_width="wrap_content"
+              android:layout_height="280px"
+              android:padding="18dp"
+              style="@style/NormalTip"
+              android:textColor="#000000"
+              android:textSize="50px"
+              android:hint="异常提示"
+              />-->
+        <TextView
+            android:id="@+id/tv_exception_tip"
+            style="@style/NormalTip"
+            android:layout_width="wrap_content"
+            android:layout_height="280px"
+            android:hint="异常提示"
+            android:lineSpacingExtra="@dimen/line_space_normal"
+            android:padding="18dp"
+            android:textColor="#000000"
+            android:textSize="50px" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/noodle_make_wait" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_error"
+            style="@style/ErrorDialogButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            tools:text="@string/confirm" />
+        <View
+        android:layout_width="1px"
+        android:layout_height="match_parent"
+        android:background="@color/noodle_make_wait" />
+
+        <Button
+            android:id="@+id/btn_cancel"
+            style="@style/ErrorDialogButton"
+            android:visibility="gone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            tools:text="取消" />
+    </LinearLayout>
+
+</LinearLayout>

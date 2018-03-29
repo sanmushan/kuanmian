@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/goods_detail_focus">
+
+    <LinearLayout
+        android:id="@+id/rl_countdown"
+        android:layout_width="match_parent"
+        android:layout_height="117px"
+        android:background="@drawable/title_bg">
+
+        <include layout="@layout/common_head_view" />
+
+    </LinearLayout>
+
+    <Button
+        android:visibility="gone"
+        android:id="@+id/testBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="调试版：跳转至库存界面" />
+
+    <LinearLayout
+        android:layout_width="1420px"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rl_countdown"
+        android:layout_marginBottom="26px"
+        android:layout_marginLeft="24px"
+        android:layout_marginTop="26px"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28px"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/btn_noodle"
+                style="@style/radiobutton"
+                android:background="@drawable/radiobutton_left_bg"
+                android:checked="true"
+                android:drawableLeft="@drawable/noodle"
+                android:text="@string/radio_btn_left" />
+
+            <RadioButton
+                android:id="@+id/btn_rice"
+                style="@style/radiobutton"
+                android:layout_marginLeft="-4px"
+                android:background="@drawable/radiobutton_center_bg"
+                android:drawableLeft="@drawable/rice"
+                android:text="@string/radio_btn_right" />
+
+            <RadioButton
+                android:id="@+id/btn_kuanMian"
+                style="@style/radiobutton"
+                android:layout_marginLeft="-4px"
+                android:background="@drawable/radiobutton_right_bg"
+                android:drawableLeft="@drawable/rice"
+                android:text="@string/radio_btn_right_1" />
+        </RadioGroup>
+
+        <FrameLayout
+            android:id="@+id/fl_goods"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="25px"
+            android:layout_marginTop="50px">
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_shade"
+        android:layout_width="446px"
+        android:layout_height="10px"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="8px"
+        android:layout_marginTop="78px"
+        android:background="@drawable/icon_shade_bg" />
+
+    <LinearLayout
+        android:layout_width="420px"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/tv_shade"
+        android:layout_marginRight="20px"
+        android:layout_marginTop="-4px"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="99px"
+            android:background="@color/shopping_cart"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32px"
+                android:src="@drawable/shopping_cart" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20px"
+                android:gravity="center"
+                android:text="@string/shopping_cart"
+                android:textColor="@color/white"
+                android:textSize="@dimen/shopping_cart_tv" />
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycle_view"
+            android:layout_width="match_parent"
+            android:layout_height="652px"
+            android:background="@color/white"
+            android:scrollbarThumbVertical="@drawable/scrollbar_thumb_bg"
+            android:scrollbarTrackVertical="@drawable/scrollbar_track_bg"
+            android:scrollbars="vertical">
+
+        </android.support.v7.widget.RecyclerView>
+
+
+        <TextView
+            android:id="@+id/tv_total"
+            android:layout_width="match_parent"
+            android:layout_height="68px"
+            android:layout_marginTop="28px"
+            android:background="@color/radiobtn_stroke_normal"
+            android:gravity="center"
+            android:textColor="@color/radiobtn_tv_normal"
+            android:textSize="@dimen/weight_padding_normal" />
+
+        <Button
+            android:id="@+id/btn_payment"
+            android:layout_width="match_parent"
+            android:layout_height="120px"
+            android:layout_alignParentBottom="true"
+            android:background="#fa6000"
+            android:onClick="confirmPay"
+            android:text="@string/payment"
+            android:textColor="@color/white"
+            android:textSize="@dimen/btn_payment" />
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/home"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_head_view" />
+    <TextView
+        android:id="@+id/tv_hide"
+        android:layout_width="60px"
+        android:layout_height="50px"
+        android:layout_alignParentRight="true"
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="300px"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btn_take_meal"
+            android:layout_width="512px"
+            android:layout_height="385px"
+            android:background="@drawable/take_meal"
+            android:onClick="select" />
+
+        <ImageButton
+            android:id="@+id/btn_order"
+            android:layout_width="512px"
+            android:layout_height="385px"
+            android:layout_marginLeft="198px"
+            android:background="@drawable/order"
+            android:onClick="select" />
+
+
+    </LinearLayout>
+</RelativeLayout>

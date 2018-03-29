@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/goods_detail_focus">
+    <LinearLayout
+        android:id="@+id/ll_title"
+        android:layout_width="match_parent"
+        android:background="@drawable/top_bg"
+        android:layout_height="120px">
+        <include layout="@layout/common_head_view"/>
+    </LinearLayout>
+<LinearLayout
+    android:layout_below="@id/ll_title"
+    android:orientation="vertical"
+    android:layout_width="880px"
+    android:layout_height="960px">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_marginTop="30px"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/order_success"/>
+        <TextView
+            android:id="@+id/tv_order_query_success"
+            android:layout_marginTop="42px"
+            style="@style/order_new1"
+            android:textColor="#03A9F4"
+            android:text="@string/order_query_success"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="168px"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_meal_number"
+            style="@style/order_new1"
+            android:layout_marginTop="82px"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/tv_order_amount"
+            style="@style/order_new2"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/tv_order_number"
+            style="@style/order_new2"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/tv_order_pay_data"
+            style="@style/order_new2"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/btn_payment"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:layout_marginTop="82px"
+        android:layout_marginLeft="50px"
+        android:textColor="@color/order_hint"
+        android:text="@string/order_confirm_hint"/>
+</LinearLayout>
+
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/buttom_bg"
+        android:layout_width="match_parent"
+        android:layout_height="78px" />
+
+    <RelativeLayout
+        android:layout_width="900px"
+        android:layout_marginTop="39dp"
+        android:layout_marginRight="22dp"
+        android:layout_height="895px"
+        android:layout_marginEnd="22dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
+        <!--android:layout_width="840px"-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="85px"
+            android:textSize="@dimen/shopping_cart_tv"
+            android:gravity="center_vertical"
+            android:id="@+id/tv_goods_title"
+            android:paddingLeft="26px"
+            android:drawableLeft="@drawable/goods_title"
+            android:drawablePadding="30px"
+            android:textColor="@color/white"
+            android:background="@color/shopping_cart"
+            android:text="@string/goods_title"/>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="788px"
+            android:background="@color/white"
+            android:layout_below="@+id/tv_goods_title"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycle_view"
+            android:layout_width="match_parent"
+            android:layout_marginRight="35px"
+            android:layout_marginTop="25px"
+            android:layout_height="520px"
+            android:scrollbars="vertical"
+            android:scrollbarThumbVertical="@drawable/scrollbar_thumb_bg"
+            android:scrollbarTrackVertical="@drawable/scrollbar_track_bg">
+        </android.support.v7.widget.RecyclerView>
+        <TextView
+            android:layout_marginTop="50px"
+            android:gravity="center"
+            android:layout_below="@id/recycle_view"
+            android:id="@+id/goods_error_hint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/radiobtn_stroke_select"
+            android:textSize="20px"
+            android:text="@string/goods_error_hint"/>
+        <LinearLayout
+            android:layout_marginTop="56px"
+            android:layout_below="@id/goods_error_hint"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <!--android:gravity="center_horizontal"-->
+            <Button
+                android:id="@+id/btn_drawback"
+                android:onClick="startNext"
+                style="@style/btn_command"
+                android:layout_width="0px"
+                android:layout_weight="1"
+                android:text="@string/all_drawback"
+                android:layout_marginLeft="10dp"/>
+            <!--android:layout_width="307px"-->
+            <Button
+                android:id="@+id/btn_start_make"
+                android:layout_marginLeft="70px"
+                android:layout_width="0px"
+                android:layout_weight="1"
+                style="@style/btn_command"
+                android:onClick="startNext"
+                android:text="@string/start_make"
+                android:layout_marginRight="10dp"/>
+        </LinearLayout>
+    </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>

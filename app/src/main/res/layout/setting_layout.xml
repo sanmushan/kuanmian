@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20px"
+            android:text="后台地址："
+            android:textSize="25px" />
+
+        <EditText
+            android:id="@+id/ed_http_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40px"
+            android:inputType="number"
+            android:hint="请输入后台地址"
+            android:textSize="20px" />
+        <Button
+            android:layout_width="200px"
+            android:layout_height="80px"
+            android:onClick="saveAddress"
+            android:textSize="30px"
+            android:text="保存地址"/>
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="30px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20px"
+            android:text="面条的数量："
+            android:textSize="25px" />
+
+        <EditText
+            android:text=""
+            android:id="@+id/ed_setting_noodles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40px"
+            android:inputType="number"
+            android:textSize="20px" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30px"
+            android:text="面条的层数："
+            android:textSize="25px" />
+
+        <EditText
+            android:id="@+id/ed_setting_noodles_plies"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40px"
+            android:inputType="number"
+            android:text=""
+            android:textSize="20px" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30px"
+            android:text="面条的价格"
+            android:textSize="25px" />
+
+        <EditText
+            android:id="@+id/ed_setting_noodles_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40px"
+            android:inputType="number"
+            android:textSize="20px" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40px"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20px"
+            android:text="米粉的数量："
+            android:textSize="25px" />
+
+        <EditText
+            android:text=""
+            android:id="@+id/ed_setting_rice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40px"
+            android:inputType="number"
+            android:textSize="20px" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30px"
+            android:text="米粉的层数："
+            android:textSize="25px" />
+
+        <EditText
+            android:text=""
+            android:id="@+id/ed_setting_rice_plies"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40px"
+            android:inputType="number"
+            android:textSize="20px" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30px"
+            android:text="米粉的价格"
+            android:textSize="25px" />
+
+        <EditText
+            android:id="@+id/ed_setting_rice_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40px"
+            android:inputType="number"
+            android:textSize="20px" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40px"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20px"
+            android:text="新鲜面数量："
+            android:textSize="25px" />
+
+        <EditText
+            android:text=""
+            android:id="@+id/edSetFreshNoodles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40px"
+            android:inputType="number"
+            android:textSize="20px" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30px"
+            android:text="新鲜面的层数："
+            android:textSize="25px" />
+
+        <EditText
+            android:text=""
+            android:id="@+id/edSetFreshNoodlesPlies"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40px"
+            android:inputType="number"
+            android:textSize="20px" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30px"
+            android:text="新鲜面的价格"
+            android:textSize="25px" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40px"
+            android:inputType="number"
+            android:textSize="20px" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40px"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20px"
+            android:text="一品类："
+            android:textSize="25px"/>
+
+        <TextView
+            android:id="@+id/tv_one_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40px"
+            android:inputType="number"
+            android:text="酸辣包"
+            android:textSize="20px" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20px"
+            android:text="一品类数量："
+            android:textSize="25px"
+            android:id="@+id/textView2" />
+
+        <EditText
+            android:text=""
+            android:id="@+id/ed_setting_spicy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40px"
+            android:inputType="number"
+            android:textSize="20px" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30px"
+            android:text="一品类层数："
+            android:textSize="25px"
+            android:id="@+id/textView5" />
+
+        <EditText
+            android:text=""
+            android:id="@+id/ed_setting_spicy_plies"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40px"
+            android:inputType="number"
+            android:textSize="20px" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30px"
+            android:text="每层最大数："
+            android:textSize="25px" />
+
+        <EditText
+            android:id="@+id/ed_one_category_max"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40px"
+            android:inputType="number"
+            android:textSize="20px" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40px"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20px"
+            android:text="二品类："
+            android:textSize="25px"/>
+
+        <TextView
+            android:id="@+id/tv_two_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40px"
+            android:inputType="number"
+            android:textSize="20px" />
+        <!--android:hint="鸡腿"-->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40px"
+            android:text="二品类数量"
+            android:textSize="25px" />
+
+        <EditText
+            android:id="@+id/ed_setting_chicken_leg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40px"
+            android:inputType="number"
+            android:textSize="20px" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30px"
+            android:text="二品类层数："
+            android:textSize="25px" />
+        <!--鸡腿的层数-->
+
+        <EditText
+            android:id="@+id/ed_setting_leg_plies"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40px"
+            android:inputType="number"
+            android:textSize="20px" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30px"
+            android:text="每层最大数："
+            android:textSize="25px" />
+
+        <EditText
+            android:id="@+id/ed_two_category_max"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40px"
+            android:inputType="number"
+            android:textSize="20px" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40px"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20px"
+            android:text="三品类："
+            android:textSize="25px"
+            android:id="@+id/textView3" />
+
+        <TextView
+            android:id="@+id/tv_three_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40px"
+            android:inputType="number"
+            android:textSize="20px" />
+        <!--android:hint="卤蛋"-->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40px"
+            android:text="三品类数量"
+            android:textSize="25px" />
+
+        <EditText
+            android:id="@+id/ed_setting_halogen_eggs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40px"
+            android:inputType="number"
+            android:textSize="20px" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30px"
+            android:text="三品类层数："
+            android:textSize="25px" />
+
+        <EditText
+            android:id="@+id/ed_setting_eggs_plies"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40px"
+            android:inputType="number"
+            android:textSize="20px" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30px"
+            android:text="每层最大数："
+            android:textSize="25px" />
+
+        <EditText
+            android:id="@+id/ed_three_category_max"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40px"
+            android:inputType="number"
+            android:textSize="20px" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40px"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20px"
+            android:text="四品类："
+            android:textSize="25px"
+            android:id="@+id/textView4" />
+
+        <TextView
+            android:id="@+id/tv_four_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40px"
+            android:inputType="number"
+            android:textSize="20px" />
+        <!--android:hint="榨菜"-->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40px"
+            android:text="四品类数量"
+            android:textSize="25px" />
+
+        <EditText
+            android:id="@+id/ed_four_category_sum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40px"
+            android:inputType="number"
+            android:textSize="20px" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30px"
+            android:text="四品类层数："
+            android:textSize="25px" />
+
+        <EditText
+            android:id="@+id/ed_four_category_plies"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40px"
+            android:inputType="number"
+            android:textSize="20px" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30px"
+            android:text="每层最大数："
+            android:textSize="25px"
+            android:id="@+id/textView6" />
+
+        <EditText
+            android:id="@+id/ed_four_category_max"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40px"
+            android:inputType="number"
+            android:textSize="20px" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40px"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40px"
+            android:text="卤水容量(毫升)："
+            android:textSize="25px" />
+
+        <EditText
+            android:text=""
+            android:id="@+id/ed_brine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40px"
+            android:inputType="number"
+            android:textSize="20px" />
+
+        <Switch
+            android:layout_marginLeft="30px"
+            android:text="是否抽奖"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/sw"
+            android:textOn="抽奖开"
+            android:textOff="抽奖关"
+            android:textSize="30px"/>
+
+    </LinearLayout>
+</LinearLayout>
