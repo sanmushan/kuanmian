@@ -27,9 +27,11 @@ import java.util.List;
 import timber.log.Timber;
 
 /**
+ * @author LIN
  * Created by 刘圣如 on 2017/10/17.
  */
 
+@SuppressWarnings("ALL")
 public class NoodleDataUtil {
     //接口物品信息
 
@@ -50,8 +52,8 @@ public class NoodleDataUtil {
         boolean isStapleFood = false;
         //价格
         float price;
-        //大类编号，如：面或粉的编号
-        int noodleNo = Integer.parseInt(menuData.MenuTypeCode.substring(menuData.MenuTypeCode.length()-1));//截取最后一个数
+        //大类编号，如：面或粉的编号   //截取最后一个数
+        int noodleNo = Integer.parseInt(menuData.MenuTypeCode.substring(menuData.MenuTypeCode.length()-1));
 
         //由面\粉\卤水的状态status判断是否有库存
         if (DBNoodleHelper.querynoodleStatusNoolde(noodleStatus).size() > 0 && DBNoodleHelper.querynoodleStatusNoolde(DbTypeContants.BRINE_STATUS).size() > 0) {
@@ -253,7 +255,11 @@ public class NoodleDataUtil {
         return noodleLists;
     }
 
-    //由排队号和models设置数据库的订单信息（2）
+    /**
+     * 由排队号和models设置数据库的订单信息（2）
+     * @param shorNo
+     * @param listModles
+     */
     @SuppressLint("BinaryOperationInTimber")
     public static void DblistModles(int shorNo, List<ListModle> listModles) {
         for (int i = 0; i < listModles.size(); i++) {
@@ -280,14 +286,20 @@ public class NoodleDataUtil {
                         dbChange(shorNo, DbTypeContants.FRESH_NOODLES, listModles.get(i),listModles.get(i).closeLotteryModels.get(j));
                         Log.w("linbin","扣除本地库存 新鲜面库存 ");
                         break;
-
+                        default:
                 }
                 Timber.e("次数" + num);
             }
         }
     }
 
-    //由排队号和models设置数据库的订单信息（3）
+    /**
+     * 由排队号和models设置数据库的订单信息（3）
+     * @param shortNo
+     * @param miantiaoNo
+     * @param listModle
+     * @param closeLotteryModel
+     */
     private static void dbChange(int shortNo, int miantiaoNo, ListModle listModle, CloseLotteryModel closeLotteryModel) {
         RiceND riceND = DBNoodleHelper.querynoodleStatusNoolde(miantiaoNo).get(0);
         RiceOrderND riceOrderND = new RiceOrderND();
@@ -320,7 +332,10 @@ public class NoodleDataUtil {
         }
     }
 
-    //将数据添加到数据库中,多单多碗中添加的库存设置（2）
+    /**
+     * 将数据添加到数据库中,多单多碗中添加的库存设置（2）
+     * @param riceOrderNDs
+     */
     public static void addRiceDbMany(List<RiceOrderND> riceOrderNDs) {
         for (int i = 0; i < riceOrderNDs.size(); i++) {
             RiceND riceND = DBNoodleHelper.queryNooldeNum(riceOrderNDs.get(i).noodleNo);
@@ -404,6 +419,7 @@ public class NoodleDataUtil {
                         brineNo--;
                         listModle.riceType = 8;
                         break;
+                        default:
                 }
                 listModle.productId = billItems.ItemCode;
                 //小类编号，判断掉料包是否有库存
@@ -441,6 +457,7 @@ public class NoodleDataUtil {
                         //鸡腿
                         noodleState = NoodleNameConstants.HAOHUA;
                         break;
+                        default:
                 }
                 listModle.stock = isNonStapleFood && isStapleFood;
 
@@ -451,7 +468,6 @@ public class NoodleDataUtil {
             }
         }
         mNoodleTradeModel.listModles = listModles;
-//        mNoodleTradeModel.hasEnoughIngredients = (noodleNo>=0 && riceNo >=0 && suanlabaoNo >=0 && brineNo>=0);
 
         //TODO LIN 3.8  --------------------------------------------------------------------------------------------------
         mNoodleTradeModel.hasEnoughIngredients = (noodleNo >= 0 && riceNo >= 0 && freshNo >= 0 && suanlabaoNo >= 0 && brineNo >= 0 && chickenLeg >= 0 && brineEgg >= 0);
@@ -460,7 +476,11 @@ public class NoodleDataUtil {
         return mNoodleTradeModel;
     }
 
-    //由米粉类型获得对应存库的总数
+    /**
+     * 由米粉类型获得对应存库的总数
+     * @param goodsType
+     * @return
+     */
     public static int getDbNum(int goodsType) {
         int sum = 0;
         ArrayList<RiceND> list = DBNoodleHelper.querynoodleStatusNoolde(goodsType);
@@ -481,7 +501,10 @@ public class NoodleDataUtil {
         return newListModles;
     }
 
-    //获得一碗面或粉需要卤水的最大容量
+    /**
+     * 获得一碗面或粉需要卤水的最大容量
+     * @return
+     */
     public static int getMaxCapacityBrine(){
         int maxCapacity=0;
         if (FormulaPreferenceConfig.getTypeABrine()>=FormulaPreferenceConfig.getTypeBBrine()){
@@ -502,7 +525,10 @@ public class NoodleDataUtil {
         return calBrine;
     }
 
-    //将成本卡的品类信息添加到数据库中，并设置一、二、三等奖对应的品类
+    /**
+     * 将成本卡的品类信息添加到数据库中，并设置一、二、三等奖对应的品类
+     * @param cardDataModel
+     */
     public static void setCategory(CostCardDataModel cardDataModel){
         List<String> list = new ArrayList<>();
         boolean isDelete = true;

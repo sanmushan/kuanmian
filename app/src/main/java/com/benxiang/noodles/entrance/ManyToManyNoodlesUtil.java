@@ -28,6 +28,7 @@ import static com.benxiang.noodles.serialport.cardmac.CardSerialOpenHelper.MAKE_
 /**
  * Created by Zeqiang Fang on 2017/9/1.
  */
+@SuppressWarnings("ALL")
 public abstract class ManyToManyNoodlesUtil {
     private ManyToManySerialReceiver mManyToManySerialReceiver;
     //模组2
@@ -36,21 +37,28 @@ public abstract class ManyToManyNoodlesUtil {
     private SerialHelper mCardSerialHelper1;
     private ManyToManySerialReceiver.OnSuccessListener mSuccessListener;
     private ManyToManySerialReceiver.OnFailureListener mFailureListener;
-    private int errorCount = 0;//出错的次数
+    //出错的次数
+    private int errorCount = 0;
     //    private int mNumberNoodles;
-    private int[] mNumberNoodlesArr;//做米粉的米粉号
-    private List<String> mNoodleStateArr;//做米粉的口味:如：卤蛋口味，酸辣包口味
-    private boolean isContinue = false;//用于多单多碗，判断循环部分是否都已经执行完：可删除
-    private int mRepeatTimes;//初始值=米粉的数量减1,表示循环部分还需要执行的次数，做的米粉的数量大于等于4会重复选择米粉
+    //做米粉的米粉号
+    private int[] mNumberNoodlesArr;
+    //做米粉的口味:如：卤蛋口味，酸辣包口味
+    private List<String> mNoodleStateArr;
+    //用于多单多碗，判断循环部分是否都已经执行完：可删除
+    private boolean isContinue = false;
+    //初始值=米粉的数量减1,表示循环部分还需要执行的次数，做的米粉的数量大于等于4会重复选择米粉
+    private int mRepeatTimes;
     /**
      * 加热命令的索引，初始值：1,用于获取一碗或者两碗的加热或加汤指令
      */
     private int mIndexHeat;
-    private int mIndexRepeatChoice;//重复选择米粉的次数，用于循环区，初始值：3，若米粉的数量大于4，则在循环区会发送取米粉的指令
-    private int mIndexFinishNumberNoodles;//初始值：0，表示已完成的米粉的索引，每完成一碗，索引加1
+    //重复选择米粉的次数，用于循环区，初始值：3，若米粉的数量大于4，则在循环区会发送取米粉的指令
+    private int mIndexRepeatChoice;
+    //初始值：0，表示已完成的米粉的索引，每完成一碗，索引加1
+    private int mIndexFinishNumberNoodles;
     private List<RiceOrderND> mNoodleEventDataArr;
-
-    private boolean mReading;//判断读数据库的线程是否在读取
+    //判断读数据库的线程是否在读取
+    private boolean mReading;
     private ReadDBThread mReadDBThread;
 
     protected ManyToManyNoodlesUtil() {
@@ -118,17 +126,6 @@ public abstract class ManyToManyNoodlesUtil {
             return;
         }
         //若前一碗没有被选中，就不继续进行多单操作，等下一单
-//        if (cacheNoodleEventDataArr.get(indexNumberNoodles-1).isSelected == false){
-//            Timber.e("-----------------------------------------------------------------"+indexNumberNoodles+"没有拼接"+newAddNoodleEventDataArr.size());
-//            return;
-//        }else {
-//            for (int j = 0; j < newAddNoodleEventDataArr.size(); j++) {
-//                DBNoodleHelper.upateNoodleSign(newAddNoodleEventDataArr.get(j).noodleNo,Constants.SIGN_DOING);
-//            }
-//            cacheNoodleEventDataArr.get(indexNumberNoodles).isSelected = true;
-//            Timber.e("-----------------------------------------------------------------"+indexNumberNoodles+"有拼接"+newAddNoodleEventDataArr.size());
-//        }
-
         for (int j = 0; j < newAddNoodleEventDataArr.size(); j++) {
             DBNoodleHelper.upateNoodleSign(newAddNoodleEventDataArr.get(j).noodleNo, Constants.SIGN_NOT_DO, Constants.SIGN_DOING);
             newAddNoodleEventDataArr.get(j).isSelected = true;
@@ -170,24 +167,10 @@ public abstract class ManyToManyNoodlesUtil {
     }
     int i=7;
     class ReadDBThread extends Thread {
+        @Override
         public void run() {
             Looper.prepare();
             while (mReading) {
-//                Timber.e("重新执行");
-//                List<RiceOrderND> list = new ArrayList<RiceOrderND>();
-//                list.removeAll(null);
-//
-//                RiceOrderND riceOrderND = new RiceOrderND();
-//                riceOrderND.noodleNo = i++;
-//                riceOrderND.noodleState = NoodleNameConstants.LUDAN;
-//                list.add(riceOrderND);
-//
-//                RiceOrderND riceOrderND1 = new RiceOrderND();
-//                riceOrderND1.noodleNo = 18;
-//                riceOrderND1.noodleState = NoodleNameConstants.QINGTANG;
-//                list.add(riceOrderND1);
-//
-//                mNoodleEventDataArr = list;
                 //查询RiceOrderND中还没做的面
                 mNoodleEventDataArr = DBNoodleHelper.queryWithoutNoodle(Constants.SIGN_NOT_DO);
                 if (mNoodleEventDataArr == null || mNoodleEventDataArr.size() == 0){
@@ -594,7 +577,8 @@ public abstract class ManyToManyNoodlesUtil {
 
             @Override
             public void choiceNoodles(int errorCode) {
-                if (errorCode == 61){//运动没到位
+                //运动没到位
+                if (errorCode == 61){
                     int numberNoodlesMax = CalNoodlesNum.getNumberNoodlesMax(mNumberNoodlesArr[0]);
                     mNumberNoodlesArr[0]++;
                     if (mNumberNoodlesArr[0]<=numberNoodlesMax) {
@@ -627,7 +611,8 @@ public abstract class ManyToManyNoodlesUtil {
 
             @Override
             public void choiceNoodlesSecond(int errorCode) {
-                if (errorCode == 61){//运动没到位
+                //运动没到位
+                if (errorCode == 61){
                     int numberNoodlesMax = CalNoodlesNum.getNumberNoodlesMax(mNumberNoodlesArr[1]);
                     mNumberNoodlesArr[1]++;
                     if (mNumberNoodlesArr[1]<=numberNoodlesMax) {
@@ -660,7 +645,8 @@ public abstract class ManyToManyNoodlesUtil {
 
             @Override
             public void choiceNoodlesThird(int errorCode) {
-                if (errorCode == 61){//运动没到位
+                //运动没到位
+                if (errorCode == 61){
                     int numberNoodlesMax = CalNoodlesNum.getNumberNoodlesMax(mNumberNoodlesArr[2]);
                     mNumberNoodlesArr[2]++;
                     if (mNumberNoodlesArr[2]<=numberNoodlesMax) {
@@ -699,7 +685,8 @@ public abstract class ManyToManyNoodlesUtil {
 
             @Override
             public void recycleChoiceNoodles(int errorCode) {
-                if (errorCode == 61){//运动没到位
+                //运动没到位
+                if (errorCode == 61){
                     int mIndexRepeatChoiceNew = mIndexRepeatChoice;
                     if (mIndexRepeatChoice>=3){
                         mIndexRepeatChoiceNew = mIndexRepeatChoice-1;
@@ -778,9 +765,6 @@ public abstract class ManyToManyNoodlesUtil {
 
         if (mCardSerialHelper!=null && mCardSerialHelper.isOpen()) {
             mCardSerialHelper.send(data);
-//            Timber.e("米粉机串口正常运行");
-//            ErrorEvent errorEvent = new ErrorEvent("米粉机串口正常运行");
-//            EventBus.getDefault().post(errorEvent);
         }else {
             Timber.e("米粉机串口未能正常运行");
             ErrorEvent errorEvent = new ErrorEvent("米粉机串口未能正常运行，请到相应位置办理手续!");
@@ -795,7 +779,6 @@ public abstract class ManyToManyNoodlesUtil {
             count=0;
             errorCount=0;
             Timber.e("count="+count);
-//            tooMuchError();
             handleError("501");
             return;
         }
@@ -828,8 +811,6 @@ public abstract class ManyToManyNoodlesUtil {
     protected abstract void onFinish(RiceOrderND riceOrderND);
 
     protected abstract void onAllFinish(RiceOrderND riceOrderND);
-
-//    protected abstract void dropPackage(String noodlesName);
 
     protected abstract void dropPackage(RiceOrderND riceOrderND);
 

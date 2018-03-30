@@ -113,26 +113,8 @@ public class NoodlesMakeActivity extends BaseActivity implements UplaodExView {
             }
         }, 8*1000);
 
-//        speakText(ShotrNoUtil.getShotrNo(false) + "号开始制作");
-//        initMakeNoodels();
-//        initRecycleNoodles();
-//        initDropSeasoningPackage();
     }
 
-    //接收数据
-//    @Subscribe(threadMode = ThreadMode.POSTING)
-//    public void onCardEvent(ComBean comRecData) {
-////        Timber.e("数据返回" + comRecData);
-//
-//        if (comRecData.makeOrRecycleNoodles == MAKE_NOODLES) {
-//            mMakeNoodlesUtil.handleReceived(comRecData);
-//        } else if (comRecData.makeOrRecycleNoodles == RECYCLE_NOODLES) {
-////            initRecycleNoodles();
-//            recycleNoodlesUtil.handleReceived(comRecData);
-//        } else if (comRecData.makeOrRecycleNoodles == SEASONING_PACKAGE) {
-//            mSeasoningPackageUtil.handleReceived(comRecData);
-//        }
-//    }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(ErrorEvent event) {
@@ -308,6 +290,7 @@ public class NoodlesMakeActivity extends BaseActivity implements UplaodExView {
                     case 8:
                         dataChange(DbTypeContants.FRESH_NOODLES, listModles.get(i), listModles.get(i).closeLotteryModels.get(j));
                         break;
+                        default:
 
                 }
             }

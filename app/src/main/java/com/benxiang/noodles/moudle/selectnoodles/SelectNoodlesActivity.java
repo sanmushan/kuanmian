@@ -237,6 +237,7 @@ public class SelectNoodlesActivity extends SetListActivity implements View.OnCli
         Log.e(TAG, "shopGoodsList: " + shopGoodsList.goods_num);
         refreshAll();
         onChange();
+
     }
 
 
