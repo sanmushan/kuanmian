@@ -16,7 +16,6 @@ import com.benxiang.noodles.moudle.banner.BannerActivity;
 import com.benxiang.noodles.serialport.ComBean;
 import com.benxiang.noodles.serialport.cardmac.CardSerialOpenHelper;
 import com.benxiang.noodles.serialport.data.sp.FormulaPreferenceConfig;
-import com.benxiang.noodles.serialport.service.MakeNoodlesService;
 import com.benxiang.noodles.utils.JsonHelper;
 import com.benxiang.noodles.utils.PreferenceUtil;
 import com.blankj.utilcode.util.BarUtils;
@@ -77,7 +76,7 @@ public class SplashActivity extends BaseActivity implements SplashView {
         mSplashPresenter.attachView(this);
         RecipeParam param = new RecipeParam();
 
-        //TODO 机器码 LIN
+        //TODO 机器码
         param.mechanical_num = PreferenceUtil.config().getMacNo(Constants.MAC_NO);
 
         //配方请求
@@ -130,7 +129,7 @@ public class SplashActivity extends BaseActivity implements SplashView {
     @Override
     public void getRecipeSuccess(List<RecipeModle.RecipeData> recipeDatas) {
 //        r_warm_size==>面加水的大小
-//        Timber.e("获取的配方:"+recipeDatas.toString());
+        Timber.e("获取的配方:"+recipeDatas.toString());
 
         //TODO  LIN 打开获取后台配方数据，关闭则是使用PreferenceKey.class中的本地数据 LINBIN
 //        for (int i=0;i<=1;i++){
@@ -211,6 +210,7 @@ public class SplashActivity extends BaseActivity implements SplashView {
             FormulaPreferenceConfig.setTypeBOil(recipeData.n_fat_time);
             FormulaPreferenceConfig.setTypeBHeatSize(recipeData.n_warm_size);
         }else if (recipeData.name.trim().equals("C")){
+            //TODO 增加做面配方，还需要改，后台数据未配合
             FormulaPreferenceConfig.setTypeCWater(recipeData.n_water_time);
             FormulaPreferenceConfig.setTypeCHeat(recipeData.n_warm_time);
             FormulaPreferenceConfig.setTypeCBrine(recipeData.n_brine_time);

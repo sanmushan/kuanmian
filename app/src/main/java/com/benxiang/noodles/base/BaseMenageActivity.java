@@ -1,12 +1,11 @@
 package com.benxiang.noodles.base;
 
+import android.annotation.SuppressLint;
 import android.text.TextUtils;
-import android.view.Gravity;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.benxiang.noodles.R;
 import com.benxiang.noodles.contants.Constants;
@@ -15,7 +14,6 @@ import com.benxiang.noodles.contants.MethodConstants;
 import com.benxiang.noodles.data.DBNoodleHelper;
 import com.benxiang.noodles.data.NoodleDB;
 import com.benxiang.noodles.data.table.DropPackageDB;
-import com.benxiang.noodles.entrance.SeasoningPackageUtil;
 import com.benxiang.noodles.model.CardDataReParameter;
 import com.benxiang.noodles.model.CostCardDataModel;
 import com.benxiang.noodles.model.backorder.BackOrderParam;
@@ -28,9 +26,6 @@ import com.benxiang.noodles.model.clearStock.ClearStockView;
 import com.benxiang.noodles.moudle.banner.BannerActivity;
 import com.benxiang.noodles.moudle.costCard.CostCardPresenter;
 import com.benxiang.noodles.moudle.costCard.CostCardView;
-import com.benxiang.noodles.serialport.ComBean;
-import com.benxiang.noodles.serialport.bean.MakeNoodlesEvent;
-import com.benxiang.noodles.serialport.cardmac.CardSerialOpenHelper;
 import com.benxiang.noodles.serialport.data.sp.FormulaPreferenceConfig;
 import com.benxiang.noodles.serialport.data.sp.PreferenceConfig;
 import com.benxiang.noodles.utils.JsonHelper;
@@ -39,12 +34,7 @@ import com.benxiang.noodles.utils.ParamObtainUtil;
 import com.benxiang.noodles.utils.PreferenceUtil;
 import com.benxiang.noodles.utils.SpUtils;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
-
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import timber.log.Timber;
@@ -124,6 +114,7 @@ public abstract class BaseMenageActivity extends BaseActivity implements CostCar
     protected BackOrderPresenter mBackOrderPresenter;
 
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onStart() {
         super.onStart();
@@ -182,6 +173,7 @@ public abstract class BaseMenageActivity extends BaseActivity implements CostCar
     }
 
     //物品库存清零
+    @SuppressLint("BinaryOperationInTimber")
     protected void clearStock() {
         mClearStockPresenter = new ClearStockPresenter();
         mClearStockPresenter.attachView(this);
@@ -201,6 +193,7 @@ public abstract class BaseMenageActivity extends BaseActivity implements CostCar
     }
 
     //TODO LIN 补库存
+    @SuppressLint("BinaryOperationInTimber")
     protected void dataToDB() {
         String noodleNo = "0";//面的数量
         String riceNo = "0";//粉的数量
@@ -210,7 +203,7 @@ public abstract class BaseMenageActivity extends BaseActivity implements CostCar
         String noodlePlies = "0";//面的层数
         String ricePlies = "0";//粉的层数
 
-        String  freshPlies = "0";//新鲜面的层数
+        String freshPlies = "0";//新鲜面的层数
 
         String spicyNo = "0";//酸辣包的数量
         String legNo = "0";//鸡腿的数量
@@ -242,7 +235,7 @@ public abstract class BaseMenageActivity extends BaseActivity implements CostCar
                 eggNo = ed_setting_chicken_leg.getText().toString().trim();
             }
             if (!ed_setting_halogen_eggs.getText().toString().trim().equals("")) {
-                legNo  = ed_setting_halogen_eggs.getText().toString().trim();
+                legNo = ed_setting_halogen_eggs.getText().toString().trim();
             }
             if (!edFourCategorySum.getText().toString().trim().equals("")) {
                 fourCategoryNo = edFourCategorySum.getText().toString().trim();
@@ -251,10 +244,10 @@ public abstract class BaseMenageActivity extends BaseActivity implements CostCar
                 spicyPiles = ed_setting_spicy_plies.getText().toString().trim();
             }
             if (!ed_setting_leg_plies.getText().toString().trim().equals("")) {
-                eggPlies  = ed_setting_leg_plies.getText().toString().trim();
+                eggPlies = ed_setting_leg_plies.getText().toString().trim();
             }
             if (!ed_setting_eggs_plies.getText().toString().trim().equals("")) {
-                legPlies    = ed_setting_eggs_plies.getText().toString().trim();
+                legPlies = ed_setting_eggs_plies.getText().toString().trim();
             }
             if (!edFourCategoryPlies.getText().toString().trim().equals("")) {
                 fourCategoryPlies = edFourCategoryPlies.getText().toString().trim();
@@ -273,22 +266,23 @@ public abstract class BaseMenageActivity extends BaseActivity implements CostCar
                     //掉料包的数量
                     Integer.parseInt(spicyNo) > FormulaPreferenceConfig.getOnePliesMax() * Integer.parseInt(spicyPiles) ||
                     Integer.parseInt(eggNo) > FormulaPreferenceConfig.getTwoPliesMax() * Integer.parseInt(eggPlies) ||
-                    Integer.parseInt(legNo) > FormulaPreferenceConfig.getThreePliesMax() * Integer.parseInt( legPlies) ||
+                    Integer.parseInt(legNo) > FormulaPreferenceConfig.getThreePliesMax() * Integer.parseInt(legPlies) ||
                     Integer.parseInt(fourCategoryNo) > FormulaPreferenceConfig.getFourPliesMax() * Integer.parseInt(fourCategoryPlies) ||
                     //层数的数量
-                    Integer.parseInt(noodlePlies) + Integer.parseInt(ricePlies) +  Integer.parseInt(freshPlies) > DbTypeContants.RICE_PLIES_MAX ||
-                    Integer.parseInt(spicyPiles) + Integer.parseInt(legPlies) + Integer.parseInt(eggPlies) + Integer.parseInt(fourCategoryPlies)
-                            > DbTypeContants.CHARGE_PLIES_MAX ||
-                    Integer.parseInt(brineCapacity) > 2500) {
-                showError("数量太大");
-            } else {
+                    Integer.parseInt(noodlePlies) + Integer.parseInt(ricePlies) + Integer.parseInt(freshPlies) > DbTypeContants.RICE_PLIES_MAX ||
+                    Integer.parseInt(spicyPiles) + Integer.parseInt(legPlies) + Integer.parseInt(eggPlies) + Integer.parseInt(fourCategoryPlies) > DbTypeContants.CHARGE_PLIES_MAX
+                    ) {
+                showError("请正确填写物料层数");
+            }else if (Integer.parseInt(brineCapacity) > 2500){
+                showError("卤水最大值为2500ML");
+            }else {
                 Timber.e("面条层数" + noodlePlies);
                 Timber.e("米粉层数" + ricePlies);
                 Timber.e("新鲜面层数" + freshPlies);
                 showLoadingDialog();
                 int riceStartNo = (Integer.parseInt(noodlePlies) + DbTypeContants.LACK_PILES) * 3 + 1;
 
-                int freshStartNo = riceStartNo + 1;
+                int freshStartNo = (Integer.parseInt(ricePlies)) * 3 + 1;
                 //TODO LIN 设置掉料通道
                 //一品类（酸辣包）
                 int spicyStartNo = 51;
@@ -315,8 +309,9 @@ public abstract class BaseMenageActivity extends BaseActivity implements CostCar
                 PreferenceConfig.setTypeCMax((freshStartNo + Integer.parseInt(freshPlies)) * 3);
 
 
-                //设置面和粉
+                //面
                 NoodleDB.initNoodle(Integer.parseInt(noodleNo), DbTypeContants.NOODLE_TYPE, true, DbTypeContants.NOODLE_START_NO, Integer.parseInt(noodlePlies));
+                //粉
                 NoodleDB.initNoodle(Integer.parseInt(riceNo), DbTypeContants.RICE_TYPE, false, riceStartNo, Integer.parseInt(ricePlies));
                 //新鲜面
                 NoodleDB.initNoodle(Integer.parseInt(freshNo), DbTypeContants.FRESH_TYPE, false, freshStartNo, Integer.parseInt(freshPlies));
@@ -373,11 +368,22 @@ public abstract class BaseMenageActivity extends BaseActivity implements CostCar
         String twoCategoryMax = edTwoCategoryMax.getText().toString().trim();
         String threeCategoryMax = edThreeCategoryMax.getText().toString().trim();
         String fourCategoryMax = edFourCategoryMax.getText().toString().trim();
-        if (TextUtils.isEmpty(noodleNo) || TextUtils.isEmpty(riceNo) || TextUtils.isEmpty(freshNo)) {
-            showError("不能为空");
+//        if (TextUtils.isEmpty(noodleNo) || TextUtils.isEmpty(riceNo) || TextUtils.isEmpty(freshNo)) {
+//            showError("不能为空");
+//            return false;
+//        }
+        if (TextUtils.isEmpty(noodleNo)) {
+            showError("请添加面条的数量");
             return false;
         }
-
+        if (TextUtils.isEmpty(riceNo)) {
+            showError("请添加米粉的数量");
+            return false;
+        }
+        if (TextUtils.isEmpty(freshNo)) {
+            showError("请添加新鲜面的数量");
+            return false;
+        }
         if (!TextUtils.isEmpty(noodleprice)) {
             PreferenceUtil.config().setStringValue(Constants.NOODLE_PRICE, noodleprice);
         }
@@ -437,6 +443,7 @@ public abstract class BaseMenageActivity extends BaseActivity implements CostCar
     @Override
     public void clearStockSuccess(ClearStockModel strMsg) {
         backOrder();
+
     }
 
     @Override
@@ -445,6 +452,6 @@ public abstract class BaseMenageActivity extends BaseActivity implements CostCar
 
     @Override
     public void showNetError(String error) {
-        showError(error);
+//        showError(error);
     }
 }

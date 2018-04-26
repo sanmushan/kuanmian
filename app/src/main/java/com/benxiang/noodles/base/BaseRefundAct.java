@@ -362,7 +362,15 @@ public abstract class BaseRefundAct extends AppCompatActivity {
                     }
                 });
     }
-
+    public void showDialog(String str) {
+        showWarningDialog(getString(R.string.confirm), str,
+                new ErrorDialogFragment.OnErrorClickListener() {
+                    @Override
+                    public void onClick(ErrorDialogFragment dialog) {
+                        dialog.dismiss();
+                    }
+                });
+    }
     private ArrayList<ErrorDialogFragment> errorDialogs;
 
     public void showCommonErrorDialog(String buttonText, String exception,

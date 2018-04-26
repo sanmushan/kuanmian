@@ -34,7 +34,7 @@ import timber.log.Timber;
 @SuppressWarnings("ALL")
 public class NoodleDataUtil {
     //接口物品信息
-
+    private static final String TAG = "NoodleDataUtil";
     /**
      * @param menuData
      * @param noodleStatus  数据库所对应的面或粉的状态，11为面，22为粉
@@ -70,6 +70,7 @@ public class NoodleDataUtil {
             listModle.riceType = noodleNo;
             listModle.productId = menuItemData.MenuItemCode;
 //            listModle.goods_no = riceND.noodleNo;
+
             //TODO LIN 增加主面时，需要增加case。下面是做对应的面对应面的配料包
             if (noodleNo == 2) {
                 //粉
@@ -139,10 +140,11 @@ public class NoodleDataUtil {
                         isStock = isStapleFood;
                         break;
                 }
-            }else{
+            }else if (noodleNo == 5){
                 //新鲜面
                 listModle.goods_no = i + startNo;
                 switch (itemType) {
+//                    todo --------------------------------------------------------------
                     case 1:
                         riceRecipe = 1;
                         noodleState = NoodleNameConstants.FRESH;
@@ -152,6 +154,7 @@ public class NoodleDataUtil {
                         noodleState = NoodleNameConstants.FRESH;
                         isStock = isStapleFood && (DBNoodleHelper.querynoodleStatusNoolde(DbTypeContants.SUANLABAO).size() > 0 ? true : false);
                         riceRecipe = 1;
+                        isStock = isStapleFood;
                         break;
                 }
             }
@@ -223,6 +226,7 @@ public class NoodleDataUtil {
     public static void getOrderToDB(int sortNo, NoodleTradeModel noodleTradeModel) {
         mNoodleTradeModel = noodleTradeModel;
         DblistModles(sortNo, noodleTradeModel.listModles);
+        Log.e("linbin--","noodleTradeModel:"+JsonHelper.getGson().toJson(noodleTradeModel));
     }
 
     //由排队号和models设置数据库的订单信息（1）
@@ -264,30 +268,26 @@ public class NoodleDataUtil {
     public static void DblistModles(int shorNo, List<ListModle> listModles) {
         for (int i = 0; i < listModles.size(); i++) {
             int num = listModles.get(i).goods_num;
-
             Timber.e("数量" + listModles.get(i).goods_num);
 
             for (int j = 0; j < num; j++) {
-
                 Timber.e("类型" + listModles.get(i).riceType);
-
                 switch (listModles.get(i).riceType) {
+
                     //TODO LIN 扣除本地库存
                     case 1:
                         dbChange(shorNo, DbTypeContants.MIANTIAO, listModles.get(i),listModles.get(i).closeLotteryModels.get(j));
-                        Log.w("linbin","扣除本地库存 面库存 ");
                         break;
                     case 2:
                         dbChange(shorNo, DbTypeContants.MIFEN, listModles.get(i),listModles.get(i).closeLotteryModels.get(j));
-                        Log.w("linbin","扣除本地库存 粉库存 ");
                         break;
                     //新鲜面
                     case 5:
                         dbChange(shorNo, DbTypeContants.FRESH_NOODLES, listModles.get(i),listModles.get(i).closeLotteryModels.get(j));
-                        Log.w("linbin","扣除本地库存 新鲜面库存 ");
                         break;
                         default:
                 }
+
                 Timber.e("次数" + num);
             }
         }
@@ -318,7 +318,8 @@ public class NoodleDataUtil {
         riceOrderND.isSetBillStatusByTakeNumber = mNoodleTradeModel.isSetBillStatusByTakeNumber;
         DBFactory.getmDBNoodle().insert(riceOrderND);
         DBNoodleHelper.upateNoodleNum(riceND.noodleNo, riceND.totalNum - 1);
-        //卤水的碗数减一
+
+
         RiceND brineND = DBNoodleHelper.querynoodleStatusNoolde(DbTypeContants.BRINE_STATUS).get(0);
         DBNoodleHelper.upateNoodleNum(brineND.noodleNo, brineND.totalNum - 1);
     }
@@ -408,7 +409,7 @@ public class NoodleDataUtil {
                         brineNo--;
                         listModle.riceType = 2;
                         break;
-                        //新鲜面
+                    //新鲜面
                     case 5:
                         if (freshNo > 0 && brineNo >0 ) {
                             isStapleFood = true;
@@ -460,9 +461,6 @@ public class NoodleDataUtil {
                         default:
                 }
                 listModle.stock = isNonStapleFood && isStapleFood;
-
-
-
                 listModle.riceTaste = noodleState;
                 listModles.add(listModle);
             }

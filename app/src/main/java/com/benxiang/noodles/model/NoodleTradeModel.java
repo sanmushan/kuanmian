@@ -24,6 +24,8 @@ public class NoodleTradeModel implements Parcelable {
     public int pay_type;
     //点的米粉的数量
     public int rice_No;
+    //点的新鲜面的数量
+    public int fresh_No;
     //点得面的数量
     public int noodle_No;
     //物品的唯一:guid
@@ -49,6 +51,7 @@ public class NoodleTradeModel implements Parcelable {
         dest.writeString(this.pay_time);
         dest.writeInt(this.pay_type);
         dest.writeInt(this.rice_No);
+        dest.writeInt(this.fresh_No);
         dest.writeInt(this.noodle_No);
         dest.writeString(this.ggid);
         dest.writeTypedList(this.listModles);
@@ -67,6 +70,7 @@ public class NoodleTradeModel implements Parcelable {
         this.pay_time = in.readString();
         this.pay_type = in.readInt();
         this.rice_No = in.readInt();
+        this.fresh_No = in.readInt();
         this.noodle_No = in.readInt();
         this.ggid = in.readString();
         this.listModles = in.createTypedArrayList(ListModle.CREATOR);

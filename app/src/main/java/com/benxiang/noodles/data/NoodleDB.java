@@ -28,9 +28,9 @@ public class NoodleDB {
                     riceND.noodleType = 1;
                 }else if (type == DbTypeContants.RICE_TYPE){
                     riceND.noodleType = 2;
-                }else{
+                }else if (type == DbTypeContants.FRESH_TYPE){
                     //新鲜面
-                    riceND.noodleType = 8;
+                    riceND.noodleType = 5;
                 }
 
                 riceND.noodleTypeDesc = type;
@@ -41,12 +41,13 @@ public class NoodleDB {
                         riceND.stratBit = 1;
                     }else if (type == DbTypeContants.RICE_TYPE){
                         riceND.stratBit = 2;
-                    }else{
+                    }else if (type == DbTypeContants.FRESH_TYPE){
                         //新鲜面
-                        riceND.stratBit = 8;
+                        riceND.stratBit = 5;
                     }
 
                 }
+                //TODO 4.23 了解下面的if判断内容，为什么 = 4 .
                 if (num > 0) {
                     if (num >= 4) {
                         riceND.totalNum = 4;
@@ -59,7 +60,7 @@ public class NoodleDB {
                         riceND.noodleStatus = DbTypeContants.MIANTIAO;
                     }else if (type == DbTypeContants.RICE_TYPE ){
                         riceND.noodleStatus = DbTypeContants.MIFEN;
-                    }else {
+                    }else if (type == DbTypeContants.FRESH_TYPE){
                         //新鲜面
                         riceND.noodleStatus = DbTypeContants.FRESH_NOODLES;
                     }

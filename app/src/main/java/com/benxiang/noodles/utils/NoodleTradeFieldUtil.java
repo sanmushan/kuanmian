@@ -1,5 +1,7 @@
 package com.benxiang.noodles.utils;
 
+import android.annotation.SuppressLint;
+
 import com.benxiang.noodles.contants.NoodleNameConstants;
 import com.benxiang.noodles.data.DBNoodleHelper;
 import com.benxiang.noodles.data.table.DropPackageDB;
@@ -45,7 +47,8 @@ public class NoodleTradeFieldUtil {
      * @param noodleTradeModel
      * @param data
      */
-    public static void setCloseLotteryModels(NoodleTradeModel noodleTradeModel,String data) {
+    @SuppressLint("BinaryOperationInTimber")
+    public static void setCloseLotteryModels(NoodleTradeModel noodleTradeModel, String data) {
         Timber.e("抽奖抽到的奖品："+data);
         //数据装换成对象==>Data To Object
         Type closeLotteryType = new TypeToken<List<CloseLotteryModel>>() {}.getType();

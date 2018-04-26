@@ -63,9 +63,9 @@ public class AppApplication extends Application {
 
     private void initDB() {
 
-        String sdCardPath = Environment.getExternalStorageDirectory().getAbsolutePath()+"/";
-        DataBaseConfig dataBaseConfig = new DataBaseConfig(this, sdCardPath+"noodles.db");
-
+//        String sdCardPath = Environment.getExternalStorageDirectory().getAbsolutePath()+"/";
+//        DataBaseConfig dataBaseConfig = new DataBaseConfig(this, sdCardPath+"noodles.db");
+        DataBaseConfig dataBaseConfig = new DataBaseConfig(this, "noodles.db");
 
         dataBaseConfig.debugged=true;
         dataBaseConfig.dbVersion=1;

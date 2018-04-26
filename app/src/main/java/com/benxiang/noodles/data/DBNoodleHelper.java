@@ -1,11 +1,13 @@
 package com.benxiang.noodles.data;
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.benxiang.noodles.contants.DbTypeContants;
 import com.benxiang.noodles.data.table.DropPackageDB;
 import com.benxiang.noodles.data.table.RiceND;
 import com.benxiang.noodles.data.table.RiceOrderND;
+import com.benxiang.noodles.utils.NoodleDataUtil;
 import com.litesuits.orm.db.assit.QueryBuilder;
 import com.litesuits.orm.db.assit.WhereBuilder;
 import com.litesuits.orm.db.model.ColumnsValue;
@@ -23,6 +25,8 @@ import static com.benxiang.noodles.data.DBFactory.getmDBNoodle;
  */
 
 public class DBNoodleHelper {
+    private static final String TAG = "DBNoodleHelper";
+
     //RiceND表
     public static ArrayList<RiceND> queryNoTypeNoolde(int noodleNo) {
         return getmDBNoodle().query(QueryBuilder.create(RiceND.class).whereEquals(RiceND.COL_RICE_ND_TYPE, noodleNo));
@@ -46,8 +50,11 @@ public class DBNoodleHelper {
     //更新米粉号的总数量
     public static void upateNoodleNum(int noodleNo, int totalNum) {
         ColumnsValue cv = new ColumnsValue(new String[]{RiceND.COL_RICE_TOTAL_NUM}, new Object[]{totalNum});
+
         getmDBNoodle().update(WhereBuilder.create(RiceND.class)
                 .equals(RiceND.COL_RICE_ND, noodleNo), cv, ConflictAlgorithm.None);
+
+
         //当数量为0，状态设置为0，没货
         if (totalNum == 0) {
             ColumnsValue cv2 = new ColumnsValue(new String[]{RiceND.COL_RICE_ND_STATUS}, new Object[]{0});

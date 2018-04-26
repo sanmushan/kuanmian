@@ -101,6 +101,9 @@ public class PaySuccessActivity extends BaseActivity implements PaySuccessView, 
                     startRefundment(PaySuccessActivity.this, LuckyDrawActivity.class, mNoodleTradeModel, payWay);
                 }else {
                     dbTest(ShotrNoUtil.getShotrNo(true), mNoodleTradeModel);
+//                    Log.d(TAG ,"linbin -- r = "+ mNoodleTradeModel.rice_No);
+//                    Log.d(TAG,"linbin -- n = "+ mNoodleTradeModel.noodle_No);
+//                    Log.d(TAG,"linbin -- f = "+ mNoodleTradeModel.fresh_No);
                     startRefundment(PaySuccessActivity.this, NoodlesMakeActivity.class, mNoodleTradeModel, payWay);
                 }
                 finish();
@@ -112,24 +115,6 @@ public class PaySuccessActivity extends BaseActivity implements PaySuccessView, 
         PlaceOrderParam placeOrderParam = ParamObtainUtil.getPlaceOrderParam(mNoodleTradeModel,mNoodleTradeModel.listModles);
 //        Timber.e("下单的参数:"+JsonHelper.getGson().toJson(placeOrderParam));
         placeOrderPresenter.placeOrder(MethodConstants.GREATEORDER, JsonHelper.getGson().toJson(placeOrderParam));
-    }
-
-    //待完善
-    private void ToBuckleDb() {
-        BuckleParam buckleParam = new BuckleParam();
-        List<BuckleParam.BuckleData> buckleDatas = new ArrayList<>();
-        buckleParam.BillNo = PreferenceUtil.config().getStringValue("orderNo");
-        buckleParam.LID = MethodConstants.SHOPCODE;
-        BuckleParam.BuckleData buckleData = new BuckleParam.BuckleData();
-        buckleData.LID = MethodConstants.SHOPCODE;
-        buckleData.MenuItemCode = "0101";
-        buckleData.Quantity = 1;
-        buckleData.Standard = "个";
-        buckleData.SellingMoney = 15;
-        buckleData.SellingPrice = 15;
-        buckleDatas.add(buckleData);
-        buckleParam.Detail = buckleDatas;
-        mPaySuccessPresenter.buckleDb(MethodConstants.KOUKU, JsonHelper.getGson().toJson(buckleParam));
     }
 
     private void ToRefundment(int payWay) {

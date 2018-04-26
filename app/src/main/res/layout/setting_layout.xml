@@ -49,7 +49,7 @@
             android:textSize="25px" />
 
         <EditText
-            android:text=""
+            android:text="9"
             android:id="@+id/ed_setting_noodles"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -70,7 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="40px"
             android:inputType="number"
-            android:text=""
+            android:text="1"
             android:textSize="20px" />
 
         <TextView
@@ -104,7 +104,7 @@
             android:textSize="25px" />
 
         <EditText
-            android:text=""
+            android:text="9"
             android:id="@+id/ed_setting_rice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -120,7 +120,7 @@
             android:textSize="25px" />
 
         <EditText
-            android:text=""
+            android:text="1"
             android:id="@+id/ed_setting_rice_plies"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -158,7 +158,7 @@
             android:textSize="25px" />
 
         <EditText
-            android:text=""
+            android:text="9"
             android:id="@+id/edSetFreshNoodles"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -174,7 +174,7 @@
             android:textSize="25px" />
 
         <EditText
-            android:text=""
+            android:text="1"
             android:id="@+id/edSetFreshNoodlesPlies"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -228,7 +228,7 @@
             android:id="@+id/textView2" />
 
         <EditText
-            android:text=""
+            android:text="9"
             android:id="@+id/ed_setting_spicy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -245,7 +245,7 @@
             android:id="@+id/textView5" />
 
         <EditText
-            android:text=""
+            android:text="1"
             android:id="@+id/ed_setting_spicy_plies"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -300,6 +300,7 @@
             android:textSize="25px" />
 
         <EditText
+            android:text="9"
             android:id="@+id/ed_setting_chicken_leg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -316,6 +317,7 @@
         <!--鸡腿的层数-->
 
         <EditText
+            android:text="1"
             android:id="@+id/ed_setting_leg_plies"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -371,6 +373,7 @@
             android:textSize="25px" />
 
         <EditText
+            android:text="9"
             android:id="@+id/ed_setting_halogen_eggs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -386,6 +389,7 @@
             android:textSize="25px" />
 
         <EditText
+            android:text="1"
             android:id="@+id/ed_setting_eggs_plies"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -495,14 +499,19 @@
             android:textSize="25px" />
 
         <EditText
-            android:text=""
+            android:text="2500"
             android:id="@+id/ed_brine"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40px"
             android:inputType="number"
             android:textSize="20px" />
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40px"
+            android:text="卤水最大值：2500ml"
+            android:textSize="25px" />
         <Switch
             android:layout_marginLeft="30px"
             android:text="是否抽奖"

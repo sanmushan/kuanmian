@@ -3,7 +3,6 @@ package com.benxiang.noodles.utils;
 import android.os.Handler;
 
 import com.benxiang.noodles.contants.Constants;
-import com.benxiang.noodles.contants.DbTypeContants;
 import com.benxiang.noodles.contants.MethodConstants;
 import com.benxiang.noodles.contants.NoodleNameConstants;
 import com.benxiang.noodles.data.DBNoodleHelper;
@@ -89,7 +88,6 @@ public class ParamObtainUtil {
         placeOrderParam.shopCode = MethodConstants.SHOPCODE;
 
         PlaceOrderParam.OrderData orderData = new PlaceOrderParam.OrderData();
-//        orderData.BillNo=DeviceUtils.getMacAddress().replace(":", "").toUpperCase() + DataEncrypt.dataFormatString();
         if (DeviceUtils.getMacAddress() != null) {
             orderData.BillNo = DeviceUtils.getMacAddress().replace(":", "").toUpperCase() + DataEncrypt.dataFormatString();
         }else {
@@ -98,7 +96,6 @@ public class ParamObtainUtil {
         orderData.GUID = noodleTradeModel.order_No;
         orderData.GuestQty = "1";
         orderData.OrderType = 1;
-//        orderData.TableNo = "A001";
         orderData.TableNo = "01";
         orderData.SumPrice = FormatUtil.flaotToDouble(noodleTradeModel.total_price);
         orderData.IsPay = 1;
@@ -108,8 +105,6 @@ public class ParamObtainUtil {
         orderData.LID = MethodConstants.SHOPCODE;
 //        orderData.LID = "test";
         Timber.e("LID的值:"+orderData.LID);
-       /* orderData.PayCardCode = "";*/
-//        orderData.LID = "test";
         orderData.Waiter = "01";
         orderData.WaiterName = "E面机器";
         orderData.Cashier = "01";
@@ -132,9 +127,7 @@ public class ParamObtainUtil {
             orderDetailData.SourcePrice = (float) Price;
             orderDetailData.DishSumReal = (float) Price;
             orderDetailData.isSuite = 0;
-//            orderDetailDatas.count = 1;
             orderDetailData.count = listModle.goods_num;
-//        orderDetailDatas.Remark = "多加点料";
             orderDetailDataArr.add(orderDetailData);
         }
         orderData.orderDetails = orderDetailDataArr;
@@ -249,6 +242,16 @@ public class ParamObtainUtil {
         riceDetail.ProductQuantity = riceCount;
         riceDetail.ProductTotalMoney = riceDetail.ProductPrice * riceDetail.ProductQuantity;
         details.add(riceDetail);
+        //TODO LIN 新鲜面补货 -------------------
+       /* BackOrderParam.Detail freshDetail = new BackOrderParam.Detail();
+        freshDetail.ProductCode = "0105";
+        freshDetail.ProductName = "面饼(宽面)";
+        freshDetail.ProductUnit="个";
+        freshDetail.ProductStandard = "个";
+        freshDetail.ProductPrice = Double.parseDouble("0");
+        freshDetail.ProductQuantity = riceCount;
+        freshDetail.ProductTotalMoney = freshDetail.ProductPrice * freshDetail.ProductQuantity;
+        details.add(freshDetail);*/
         //一品类补货
         BackOrderParam.Detail suanLabaoDetail = new BackOrderParam.Detail();
         suanLabaoDetail.ProductCode = "0301";
@@ -373,8 +376,6 @@ public class ParamObtainUtil {
 
         ArrayList<String> list = new ArrayList<String>();
         list.add("");
-//        list.add("0101");
-//        list.add("0102");
         clearStockParam.ProductCode = "";
 
         return clearStockParam;
@@ -407,10 +408,8 @@ public class ParamObtainUtil {
         order.Operator = "01";
         order.OperatorName = "E面机器";
         order.OrderDate = noodleTradeModel.pay_time;
-//        orderData.Remark = "多加点汤";
         List<AddOrderItemParam.OrderDetail> orderDetails = new ArrayList<>();
         List<CloseLotteryModel> lotteryList = NoodleTradeFieldUtil.getLotteryList(noodleTradeModel);
-//        List<ListModle> listModles = noodleTradeModel.listModles;
         for (int i = 0; i < lotteryList.size(); i++) {
             CloseLotteryModel closeLotteryModel = lotteryList.get(i);
             AddOrderItemParam.OrderDetail orderDetail = new AddOrderItemParam.OrderDetail();
@@ -423,7 +422,6 @@ public class ParamObtainUtil {
             orderDetail.price = (float) 0;
             orderDetail.CostPrice = (float) 0;
             orderDetail.SourcePrice = (float) 0;
-//            orderDetail.DishSumReal = (float) Price;
             orderDetail.isSuite = 0;
             orderDetail.count = closeLotteryModel.count;
 //            orderDetail.

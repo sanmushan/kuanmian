@@ -1,5 +1,6 @@
 package com.benxiang.noodles.moudle.selectnoodles;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -163,6 +164,7 @@ public class SelectNoodlesActivity extends SetListActivity implements View.OnCli
                 holder.setText(R.id.tv_show_num, "" + goods_num[0]);
                 holder.setImageUrl(AppApplication.getAppContext(),R.id.igbtn_noodles,goodsNewsBean.SmallImagePath,R.drawable.load_fail_small);
                 holder.setOnClickListener(R.id.btn_num_dec, new View.OnClickListener() {
+                    @SuppressLint("BinaryOperationInTimber")
                     @Override
                     public void onClick(View v) {
                         goodsNewsBean.goods_num--;
@@ -179,6 +181,7 @@ public class SelectNoodlesActivity extends SetListActivity implements View.OnCli
                                 noodlesVIewFragments.setOnclikEnable(true);*/
                                 PreferenceUtil.config().setBooleanValue(goodsNewsBean.goods_no + "号", true);
                                 goodsNewsBeanList.remove(holder.getAdapterPosition());
+
                             }
                             refreshAll();
                             onChange();
@@ -306,7 +309,7 @@ public class SelectNoodlesActivity extends SetListActivity implements View.OnCli
     public void confirmPay(View view) {
         resetNum();
         if (mNoodleTradeModel.total_num == 0) {
-            showError("商品不能为空");
+            showDialog("请选择您需要购买的商品");
         } else if (lowStockHint()) {
             Intent intent = new Intent(SelectNoodlesActivity.this, PaymentActivity.class);
             Bundle bundle = new Bundle();
@@ -330,7 +333,10 @@ public class SelectNoodlesActivity extends SetListActivity implements View.OnCli
     //数据库操作
     private boolean lowStockHint() {
         for (int i = 0; i < goodsNewsBeanList.size(); i++) {
+            Log.d(TAG,"linbin , i = " + goodsNewsBeanList.get(i).goods_name);
+            Log.d(TAG,"linbin , i = " + goodsNewsBeanList.get(i).goods_num);
             ListModle listModle = goodsNewsBeanList.get(i);
+            Log.d(TAG,"linbin , noodle_type = " + listModle.riceType);
             if (listModle.riceType == DbTypeContants.NOODLE_TYPE_NO) {
                 noodleNum += listModle.goods_num;
             } else if (listModle.riceType == DbTypeContants.RICE_TYPE_NO) {
@@ -361,7 +367,8 @@ public class SelectNoodlesActivity extends SetListActivity implements View.OnCli
 
             return false;
         }
-        if (getDbNum(DbTypeContants.MIFEN) < riceNum) {  showWarningDialog("确定", getString(R.string.noodle_stock
+        if (getDbNum(DbTypeContants.MIFEN) < riceNum) {
+                showWarningDialog("确定", getString(R.string.noodle_stock
                 ,"米粉",getDbNum(DbTypeContants.MIFEN)),true,false);
             return false;
         }
@@ -372,7 +379,7 @@ public class SelectNoodlesActivity extends SetListActivity implements View.OnCli
         }
         //新鲜面
         if (getDbNum(DbTypeContants.FRESH_NOODLES) < freshNum) {
-            showWarningDialog("确定", getString(R.string.noodle_stock
+                showWarningDialog("确定", getString(R.string.noodle_stock
                     ,"新鲜面",getDbNum(DbTypeContants.FRESH_NOODLES)),true,false);
             return false;
         }
@@ -383,7 +390,10 @@ public class SelectNoodlesActivity extends SetListActivity implements View.OnCli
         }
         mNoodleTradeModel.rice_No = riceNum;
         mNoodleTradeModel.noodle_No = noodleNum;
-
+        mNoodleTradeModel.fresh_No = freshNum;
+        Log.e(TAG ,"linbin , riceNum = " + riceNum);
+        Log.e(TAG ,"linbin , noodleNum = "+ noodleNum);
+        Log.e(TAG ,"linbin , freshNum = "+ freshNum);
         return true;
     }
 

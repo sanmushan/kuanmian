@@ -23,11 +23,13 @@ public class DbTypeContants {
     public static final int RICE_TYPE_NO = 2;
     public static final int SUANLABAO_TYPE_NO = 3;
     public static final int SUANLAJITUI_TYPE_NO = 4;
-    public static final int LUJIDANG_TYPE_NO = 5;
+//    public static final int LUJIDANG_TYPE_NO = 5;
+    public static final int LUJIDANG_TYPE_NO = 8;
+
     public static final int FOUR_CATEGORY_TYPE_NO = 6;
     public static final int BRINE_TYPE_NO = 7;
     //新鲜面
-    public static final int FRESH_TYPE_NO = 8;
+    public static final int FRESH_TYPE_NO = 5;
 
     //管道类型
     public static final String NOODLE_TYPE = "A";
@@ -40,20 +42,7 @@ public class DbTypeContants {
     //新鲜面
     public static final String FRESH_TYPE = "H";
 
-    //物品名称
-    //面
-//    public static final String QINGTANG_MAIN = "清汤小面";
-//    public static final String CHONGQING_MAIN = "重庆小面";
-//    public static final String LUDAN_MAIN = "卤蛋小面";
-//    public static final String JITUI_MAIN = "鸡腿小面";
-//    //米粉.
-//    public static final String QINGTANG_FENG = "清汤薯粉";
-//    public static final String SUANLA_FENG = "酸辣薯粉";
-//    public static final String LUDAN_FENG = "卤蛋薯粉";
-//    public static final String JITUI_FENG = "鸡腿薯粉";
-
     //数据库的各个物品的数量设置
-
     public static final int RICE_PLIE = 6;
     public static final int NOODLE_PLIE = 5;
     public static final int SUANLA_BAO_PLIE_NO = 35;

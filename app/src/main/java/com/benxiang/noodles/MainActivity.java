@@ -29,13 +29,14 @@ import com.benxiang.noodles.widget.SecretDialogFragment;
 import butterknife.BindView;
 import timber.log.Timber;
 
-public class MainActivity extends BaseActivity implements SecretDialogFragment.CallBack,InformationView {
+public class MainActivity extends BaseActivity implements SecretDialogFragment.CallBack, InformationView {
 
     @BindView(R.id.tv_hide)
     TextView tvHide;
     private Object data;
     private int buttonId;
     private InformationPresenter mInformationPresenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +55,7 @@ public class MainActivity extends BaseActivity implements SecretDialogFragment.C
         //获取物品信息
         mInformationPresenter = new InformationPresenter();
         mInformationPresenter.attachView(this);
-    }  //接收数据
+    }
 
     @Override
     protected void onDestroy() {
@@ -98,14 +99,12 @@ public class MainActivity extends BaseActivity implements SecretDialogFragment.C
                     startOrder();
                     break;
                 case R.id.btn_take_meal:
-//                    showWarningDialog("确定", "抱歉，功能暂时没开放!!!");
                     startTameMeal();
                     break;
-                    default:
+                default:
             }
         }
     }
-
 
 
     long lastTime;
@@ -152,7 +151,7 @@ public class MainActivity extends BaseActivity implements SecretDialogFragment.C
                 buttonId = R.id.btn_take_meal;
                 startNextActivity();
                 break;
-                default:
+            default:
         }
     }
 
@@ -165,20 +164,23 @@ public class MainActivity extends BaseActivity implements SecretDialogFragment.C
         informationParam.shopCode = MethodConstants.SHOPCODE;
         mInformationPresenter.getInformation(MethodConstants.GETMENU, JsonHelper.getGson().toJson(informationParam));
     }
+
     //输入取餐号界面
     private void startTameMeal() {
         Intent intent = new Intent(MainActivity.this, OrderMealNumActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putParcelable("riceOrderND",mRiceOrderND);
+        bundle.putParcelable("riceOrderND", mRiceOrderND);
         intent.putExtras(bundle);
         startActivity(intent);
     }
 
     @Override
-    public void showLoading() {}
+    public void showLoading() {
+    }
 
     @Override
-    public void hideLoading() {}
+    public void hideLoading() {
+    }
 
     @Override
     public void showNetError(String error) {
@@ -187,16 +189,16 @@ public class MainActivity extends BaseActivity implements SecretDialogFragment.C
 
     @Override
     public void getInformationSuccess(CommonModel<InformationModle> commonModel) {
-        Timber.e("获取到的物品的信息:"+JsonHelper.getGson().toJson(commonModel));
+        Timber.e("获取到的物品的信息:" + JsonHelper.getGson().toJson(commonModel));
         //TODO LIN 获取面食类型，传到对应的fragment中
         Intent intent = new Intent(MainActivity.this, SelectNoodlesActivity.class);
-        NoodleTradeModel modelNoodle = NoodleDataUtil.getData(commonModel.strMsg.menuData.get(0), DbTypeContants.MIANTIAO,1);
+        NoodleTradeModel modelNoodle = NoodleDataUtil.getData(commonModel.strMsg.menuData.get(0), DbTypeContants.MIANTIAO, 1);
         //小类类型的数量
         int noodleSice = commonModel.strMsg.menuData.get(0).menuItemData.size();
-        NoodleTradeModel modelrice = NoodleDataUtil.getData(commonModel.strMsg.menuData.get(1), DbTypeContants.MIFEN,noodleSice+1);
+        NoodleTradeModel modelrice = NoodleDataUtil.getData(commonModel.strMsg.menuData.get(1), DbTypeContants.MIFEN, noodleSice + 1);
 
         int freshSice = commonModel.strMsg.menuData.get(1).menuItemData.size();
-        NoodleTradeModel modelFresh= NoodleDataUtil.getData(commonModel.strMsg.menuData.get(2), DbTypeContants.FRESH_NOODLES,freshSice+1);
+        NoodleTradeModel modelFresh = NoodleDataUtil.getData(commonModel.strMsg.menuData.get(2), DbTypeContants.FRESH_NOODLES, freshSice + 1);
 
         Log.e("对象", "startOrder: " + modelNoodle.listModles.size());
         Bundle bundle = new Bundle();
@@ -205,13 +207,10 @@ public class MainActivity extends BaseActivity implements SecretDialogFragment.C
 
         bundle.putParcelable("fresh", modelFresh);
 
-
-        bundle.putParcelable("riceOrderND",mRiceOrderND);
+        bundle.putParcelable("riceOrderND", mRiceOrderND);
         intent.putExtras(bundle);
         startActivity(intent);
     }
-
-
 
 
 }

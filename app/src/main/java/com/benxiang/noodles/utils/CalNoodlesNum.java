@@ -34,6 +34,7 @@ public class CalNoodlesNum {
         return mNumberNoodles;
     }
 
+    //TODO 如何判断米粉类型？？？？？
     //由米粉类型得到对应的最小米粉号
     public static int getNumberNoodlesMin(NoodlesType noodlesType) {
         int mNumberNoodles = 0;

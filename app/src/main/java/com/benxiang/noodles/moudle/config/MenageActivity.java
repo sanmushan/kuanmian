@@ -50,6 +50,7 @@ import timber.log.Timber;
 import static com.benxiang.noodles.serialport.cardmac.CardSerialOpenHelper.MAKE_NOODLES;
 
 /**
+ * @author
  * Created by 刘圣如 on 2017/9/25.
  */
 
@@ -112,7 +113,7 @@ public class MenageActivity extends BaseMenageActivity implements MenageView {
         registerMainHandler();
         mMenagePresenter = new MenagePresenter();
         mMenagePresenter.attachView(this);
-        //机器异常卡位后，点击，皮带正转，机器复位 LIN
+        //机器异常卡位后，点击皮带正转，机器复位 LIN
         btnControl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -196,18 +197,19 @@ public class MenageActivity extends BaseMenageActivity implements MenageView {
         int suanLaJiTui = NoodleDataUtil.getDbNum(DbTypeContants.SUANLAJITUI);
         int luJiDan = NoodleDataUtil.getDbNum(DbTypeContants.LUJIDANG);
         int fourCatogory = NoodleDataUtil.getDbNum(DbTypeContants.FOUR_CATEGORY);
+
         //将读取到的库存显示到View中
         tvCurrentNoodles.setText(Integer.toString(mianTiao));
         tvCurrentRice.setText(Integer.toString(miFen));
         tvFreshCurrent.setText("新鲜面数量：" + Integer.toString(freshNoodles));
         tvCurrentSpicy.setText(Integer.toString(suanLaBao));
-
         //第二品类 卤蛋
         tvCurrentChickenLeg.setText(Integer.toString(luJiDan));
         //第三品类 鸡腿
         tvCurrentEggs.setText(Integer.toString(suanLaJiTui));
 
         tvCurrentFourCatogory.setText(Integer.toString(fourCatogory));
+
     }
 
     //重置数据库的点击事件
@@ -232,9 +234,6 @@ public class MenageActivity extends BaseMenageActivity implements MenageView {
             public void onTimeout() {
             }
         });
-
-
-
         if (errorCount > 5) {
             mNoodlesSerialReceiver.setExecStep(0);
             count=0;
