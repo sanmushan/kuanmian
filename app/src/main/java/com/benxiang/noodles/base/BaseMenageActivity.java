@@ -8,6 +8,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.benxiang.noodles.R;
+import com.benxiang.noodles.VideoActivity;
 import com.benxiang.noodles.contants.Constants;
 import com.benxiang.noodles.contants.DbTypeContants;
 import com.benxiang.noodles.contants.MethodConstants;
@@ -347,7 +348,8 @@ public abstract class BaseMenageActivity extends BaseActivity implements CostCar
             @Override
             public void run() {
                 hideLoadingDialog();
-                startNext(BaseMenageActivity.this, BannerActivity.class);
+//                startNext(BaseMenageActivity.this, BannerActivity.class);
+                startNext(BaseMenageActivity.this, VideoActivity.class);
             }
         }, 3000);
     }

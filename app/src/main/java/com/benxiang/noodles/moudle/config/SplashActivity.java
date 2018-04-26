@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.benxiang.noodles.BuildConfig;
 import com.benxiang.noodles.R;
+import com.benxiang.noodles.VideoActivity;
 import com.benxiang.noodles.base.BaseActivity;
 import com.benxiang.noodles.contants.Constants;
 import com.benxiang.noodles.contants.MethodConstants;
@@ -96,7 +97,8 @@ public class SplashActivity extends BaseActivity implements SplashView {
         String freshNo = PreferenceUtil.config().getStringValue(Constants.FRESH_NO);
 
         if (!TextUtils.isEmpty(noodleNo) || !TextUtils.isEmpty(riceNo)|| !TextUtils.isEmpty(freshNo) || !TextUtils.isEmpty(mac)) {
-            intent = new Intent(SplashActivity.this, BannerActivity.class);
+//            intent = new Intent(SplashActivity.this, BannerActivity.class);
+            intent = new Intent(SplashActivity.this, VideoActivity.class);
         } else {
             intent = new Intent(SplashActivity.this, SettingActivity.class);
         }
