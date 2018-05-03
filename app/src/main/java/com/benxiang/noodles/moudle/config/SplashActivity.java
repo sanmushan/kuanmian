@@ -6,7 +6,6 @@ import android.util.Log;
 
 import com.benxiang.noodles.BuildConfig;
 import com.benxiang.noodles.R;
-import com.benxiang.noodles.VideoActivity;
 import com.benxiang.noodles.base.BaseActivity;
 import com.benxiang.noodles.contants.Constants;
 import com.benxiang.noodles.contants.MethodConstants;
@@ -17,6 +16,7 @@ import com.benxiang.noodles.moudle.banner.BannerActivity;
 import com.benxiang.noodles.serialport.ComBean;
 import com.benxiang.noodles.serialport.cardmac.CardSerialOpenHelper;
 import com.benxiang.noodles.serialport.data.sp.FormulaPreferenceConfig;
+import com.benxiang.noodles.serialport.service.MakeNoodlesService;
 import com.benxiang.noodles.utils.JsonHelper;
 import com.benxiang.noodles.utils.PreferenceUtil;
 import com.blankj.utilcode.util.BarUtils;
@@ -97,15 +97,15 @@ public class SplashActivity extends BaseActivity implements SplashView {
         String freshNo = PreferenceUtil.config().getStringValue(Constants.FRESH_NO);
 
         if (!TextUtils.isEmpty(noodleNo) || !TextUtils.isEmpty(riceNo)|| !TextUtils.isEmpty(freshNo) || !TextUtils.isEmpty(mac)) {
-//            intent = new Intent(SplashActivity.this, BannerActivity.class);
-            intent = new Intent(SplashActivity.this, VideoActivity.class);
+            intent = new Intent(SplashActivity.this, BannerActivity.class);
+//            intent = new Intent(SplashActivity.this, VideoActivity.class);
         } else {
             intent = new Intent(SplashActivity.this, SettingActivity.class);
         }
         if (BuildConfig.IS_MANY_POWL){
             if (!ServiceUtils.isServiceRunning("com.benxiang.noodles.serialport.service.MakeNoodlesService")){
                 //TODO LIN 如需在模拟器上运行，请屏蔽下面代码
-//                ServiceUtils.startService(MakeNoodlesService.class);
+                ServiceUtils.startService(MakeNoodlesService.class);
             }
         }
         startActivity(intent);
@@ -140,9 +140,9 @@ public class SplashActivity extends BaseActivity implements SplashView {
 //        }
 
         //TODO LIN 机器上运行
-//        writeFormula();
+        writeFormula();
 //        模拟器上运行
-        startNext();
+//        startNext();
     }
 
     @Override

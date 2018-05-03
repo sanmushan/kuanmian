@@ -63,6 +63,7 @@ public class NoodleDB {
                     }else if (type == DbTypeContants.FRESH_TYPE){
                         //新鲜面
                         riceND.noodleStatus = DbTypeContants.FRESH_NOODLES;
+
                     }
 
                 } else {

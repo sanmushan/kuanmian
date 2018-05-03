@@ -8,7 +8,6 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.benxiang.noodles.R;
-import com.benxiang.noodles.VideoActivity;
 import com.benxiang.noodles.contants.Constants;
 import com.benxiang.noodles.contants.DbTypeContants;
 import com.benxiang.noodles.contants.MethodConstants;
@@ -283,7 +282,7 @@ public abstract class BaseMenageActivity extends BaseActivity implements CostCar
                 showLoadingDialog();
                 int riceStartNo = (Integer.parseInt(noodlePlies) + DbTypeContants.LACK_PILES) * 3 + 1;
 
-                int freshStartNo = (Integer.parseInt(ricePlies)) * 3 + 1;
+                int freshStartNo = (Integer.parseInt(ricePlies)+Integer.parseInt(noodlePlies) + DbTypeContants.LACK_PILES) * 3 + 1;
                 //TODO LIN 设置掉料通道
                 //一品类（酸辣包）
                 int spicyStartNo = 51;
@@ -299,7 +298,7 @@ public abstract class BaseMenageActivity extends BaseActivity implements CostCar
                 Timber.e("鸡蛋层数" + eggPlies);
                 Timber.e("鸡蛋开始" + eggStartNo);
 
-                //TODO LIN 设置面食类的最大数量
+                //TODO LIN 设置面食类的最大层数量
                 PreferenceConfig.setTypeAMax((Integer.parseInt(noodlePlies) + DbTypeContants.LACK_PILES) * 3);
 //                PreferenceConfig.setTypeAMax((Integer.parseInt(noodlePlies) + 1) * 3);
 
@@ -334,8 +333,9 @@ public abstract class BaseMenageActivity extends BaseActivity implements CostCar
 
                 NoodleDB.initNoodle(brineNo, false, fourCategorytStartNo + Integer.parseInt(fourCategoryPlies));
                 runToNextPager();
-                //TODO LIN 设置后台库存上传参数
-                backOrderParam = ParamObtainUtil.getBackOrderParam(Integer.parseInt(noodleNo), Integer.parseInt(riceNo), Integer.parseInt(spicyNo), Integer.parseInt(legNo), Integer.parseInt(eggNo), Integer.parseInt(fourCategoryNo));
+                //TODO LIN 设置后台库存上传参数 -------------------------------------------------------------
+                backOrderParam = ParamObtainUtil.getBackOrderParam(Integer.parseInt(noodleNo), Integer.parseInt(riceNo),
+                        Integer.parseInt(spicyNo), Integer.parseInt(legNo), Integer.parseInt(eggNo), Integer.parseInt(fourCategoryNo));
 //                backOrderParam = ParamObtainUtil.getBackOrderParam(Integer.parseInt(noodleNo), Integer.parseInt(riceNo), Integer.parseInt(freshNo), Integer.parseInt(spicyNo), Integer.parseInt(legNo), Integer.parseInt(eggNo), Integer.parseInt(fourCategoryNo));
                 //清库存后补货
                 clearStock();
@@ -348,8 +348,8 @@ public abstract class BaseMenageActivity extends BaseActivity implements CostCar
             @Override
             public void run() {
                 hideLoadingDialog();
-//                startNext(BaseMenageActivity.this, BannerActivity.class);
-                startNext(BaseMenageActivity.this, VideoActivity.class);
+                startNext(BaseMenageActivity.this, BannerActivity.class);
+//                startNext(BaseMenageActivity.this, VideoActivity.class);
             }
         }, 3000);
     }

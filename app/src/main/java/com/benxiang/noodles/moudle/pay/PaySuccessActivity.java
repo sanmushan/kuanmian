@@ -78,7 +78,7 @@ public class PaySuccessActivity extends BaseActivity implements PaySuccessView, 
         placeOrderPresenter=new PlaceOrderPresenter();
         placeOrderPresenter.attachView(this);
 
-        Log.e(TAG, "initView: " + payWay);
+        Log.e(TAG, "payWay: " + payWay);
 
         ToPlaceOrder();
         if (BuildConfig.DEBUG){
@@ -101,9 +101,7 @@ public class PaySuccessActivity extends BaseActivity implements PaySuccessView, 
                     startRefundment(PaySuccessActivity.this, LuckyDrawActivity.class, mNoodleTradeModel, payWay);
                 }else {
                     dbTest(ShotrNoUtil.getShotrNo(true), mNoodleTradeModel);
-//                    Log.d(TAG ,"linbin -- r = "+ mNoodleTradeModel.rice_No);
-//                    Log.d(TAG,"linbin -- n = "+ mNoodleTradeModel.noodle_No);
-//                    Log.d(TAG,"linbin -- f = "+ mNoodleTradeModel.fresh_No);
+
                     startRefundment(PaySuccessActivity.this, NoodlesMakeActivity.class, mNoodleTradeModel, payWay);
                 }
                 finish();

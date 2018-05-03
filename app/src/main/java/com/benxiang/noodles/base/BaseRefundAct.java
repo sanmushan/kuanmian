@@ -22,7 +22,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.benxiang.noodles.R;
-import com.benxiang.noodles.VideoActivity;
 import com.benxiang.noodles.contants.Constants;
 import com.benxiang.noodles.data.table.RiceOrderND;
 import com.benxiang.noodles.model.NoodleTradeModel;
@@ -100,8 +99,8 @@ public abstract class BaseRefundAct extends AppCompatActivity {
     }
 
     private void ReturnBanner() {
-//        Intent intent = new Intent(this, BannerActivity.class);
-        Intent intent = new Intent(this, VideoActivity.class);
+        Intent intent = new Intent(this, BannerActivity.class);
+//        Intent intent = new Intent(this, VideoActivity.class);
         startActivity(intent);
     }
 
@@ -496,8 +495,8 @@ public abstract class BaseRefundAct extends AppCompatActivity {
 
     protected void StartBanner() {
         if (!TextUtils.isEmpty(PreferenceUtil.config().getMacNo(Constants.MAC_NO))){
-//            Intent intent = new Intent(this, BannerActivity.class);
-            Intent intent = new Intent(this, VideoActivity.class);
+            Intent intent = new Intent(this, BannerActivity.class);
+//            Intent intent = new Intent(this, VideoActivity.class);
             Bundle bundle = new Bundle();
             bundle.putParcelable("riceOrderND",mRiceOrderND);
             intent.putExtras(bundle);

@@ -14,12 +14,15 @@ import com.benxiang.noodles.contants.MethodConstants;
 import com.benxiang.noodles.model.ListModle;
 import com.benxiang.noodles.model.NoodleTradeModel;
 import com.benxiang.noodles.model.remote.OrderNumQueryModel;
+import com.benxiang.noodles.moudle.luckydraw.LuckyDrawActivity;
 import com.benxiang.noodles.moudle.makenoodle.NoodlesMakeActivity;
+import com.benxiang.noodles.moudle.pay.PaySuccessActivity;
 import com.benxiang.noodles.utils.JsonHelper;
 import com.benxiang.noodles.utils.NoodleDataUtil;
 import com.benxiang.noodles.utils.NoodleTradeFieldUtil;
 import com.benxiang.noodles.utils.PreferenceUtil;
 import com.benxiang.noodles.utils.ShotrNoUtil;
+import com.benxiang.noodles.utils.SpUtils;
 import com.benxiang.noodles.view.CustomerKeyboard;
 import com.benxiang.noodles.view.NumberEditText;
 import com.benxiang.noodles.widget.ErrorDialogFragment;
@@ -123,38 +126,52 @@ public class OrderMealNumActivity extends BaseActivity implements OrderMealNumVi
     }
 
     private void startMake() {
-            hintVisibility();
-            showLoadingDialog();
-            getMainHandler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    Timber.e("几份食物 " + mNoodleTradeModel.listModles.size());
-                    hideLoadingDialog();
-                    Intent intent;
-                    if (mNoodleTradeModel.hasEnoughIngredients){
+        hintVisibility();
+        showLoadingDialog();
+        getMainHandler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Timber.e("几份食物 " + mNoodleTradeModel.listModles.size());
+                hideLoadingDialog();
+                Intent intent;
+                if (mNoodleTradeModel.hasEnoughIngredients) {
+                    String luckyDraw = SpUtils.loadValue("lucky");
+                    if (luckyDraw.equals("1")) {
+//                        intent = new Intent(OrderMealNumActivity.this, LuckyDrawActivity.class);
+                        startRefundment(OrderMealNumActivity.this, LuckyDrawActivity.class, mNoodleTradeModel, 0);
+                    } else {
                         intent = new Intent(OrderMealNumActivity.this, NoodlesMakeActivity.class);
                         //不抽奖，直接将抽奖信息设置为谢谢惠顾
                         NoodleTradeFieldUtil.setListModlesWithLottery(mNoodleTradeModel);
                         //写做面的数据到数据库中，开始做面
                         NoodleDataUtil.getOrderToDB(ShotrNoUtil.getShotrNo(true), mNoodleTradeModel);
-                    }else {
-                        intent = new Intent(OrderMealNumActivity.this, OrderQueryActiviity.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putParcelable("noodle", mNoodleTradeModel);
+                        bundle.putParcelable("riceOrderND", mRiceOrderND);
+                        intent.putExtra("test", 1);
+                        intent.putExtras(bundle);
+                        startActivity(intent);
                     }
+
+                } else {
+                    intent = new Intent(OrderMealNumActivity.this, OrderQueryActiviity.class);
                     Bundle bundle = new Bundle();
                     bundle.putParcelable("noodle", mNoodleTradeModel);
-                    bundle.putParcelable("riceOrderND",mRiceOrderND);
+                    bundle.putParcelable("riceOrderND", mRiceOrderND);
                     intent.putExtra("test", 1);
                     intent.putExtras(bundle);
                     startActivity(intent);
                 }
-            }, 1000);
+
+            }
+        }, 1000);
     }
 
     private void queryOrderNo() {
         OrderMealNumParam orderMealNumParam = new OrderMealNumParam();
         orderMealNumParam.shopCode = PreferenceUtil.config().getMacNo(Constants.MAC_NO);
         orderMealNumParam.TakeNumber = edpassword.getText().toString().trim();
-        Timber.e("根据取餐号获取订单状态的接口参数:"+JsonHelper.getGson().toJson(orderMealNumParam));
+        Timber.e("根据取餐号获取订单状态的接口参数:" + JsonHelper.getGson().toJson(orderMealNumParam));
         mOrderMealNumPresenter.orderQuery(MethodConstants.ORDER_NUM_IF, JsonHelper.getGson().toJson(orderMealNumParam));
     }
 
@@ -216,7 +233,7 @@ public class OrderMealNumActivity extends BaseActivity implements OrderMealNumVi
             listModle.stock = true;
             listModles.add(listModle);
         }*/
-        mNoodleTradeModel= NoodleDataUtil.getNoodleTradeModel(strMsg,edpassword.getText().toString().trim());
+        mNoodleTradeModel = NoodleDataUtil.getNoodleTradeModel(strMsg, edpassword.getText().toString().trim());
         startMake();
     }
 
