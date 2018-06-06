@@ -14,6 +14,7 @@ public class GlideImageLoader extends ImageLoader {
         Glide.with(context.getApplicationContext())
                 .load(path)
                 .crossFade()
+                .override(1920,1080)
                 .into(imageView);
     }
 

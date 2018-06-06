@@ -76,7 +76,7 @@ public abstract class MakeNoodlesUtil {
     }
 
 
-    public void setNumberNoodles(int[] numberNoodlesArr){
+    private void setNumberNoodles(int[] numberNoodlesArr){
         mNumberNoodlesArr = numberNoodlesArr;
         //后缀重复部分要执行的次数
         mRepeatTimes = mNumberNoodlesArr.length - 1;

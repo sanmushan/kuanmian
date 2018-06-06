@@ -45,7 +45,6 @@ public class GuqingTestActivity extends BaseActivity implements SellOffView ,Upl
     private PlaceOrderPresenter placeOrderPresenter;
     private SliderPresenter mSliderPresenter;
     private BackOrderPresenter backOrderPresenter;
-//    private  String orderNo= DeviceUtils.getMacAddress().replace(":", "").toUpperCase() + DataEncrypt.dataFormatString();
     private String orderTimne = DataEncrypt.dataFormat();
     private ClearStockPresenter mClearStockPresenter;
     @Override
@@ -56,54 +55,6 @@ public class GuqingTestActivity extends BaseActivity implements SellOffView ,Upl
     @Override
     protected void afterContentViewSet() {
         registerMainHandler();
-        showError("哈哈哈哈");
-    /*    mSellOffPresenter = new SellOffPresenter();
-        mSellOffPresenter.attachView(this);
-        SellOffParam sellOffParam = new SellOffParam();
-        sellOffParam.LID = MethodConstants.SHOPCODE;
-        sellOffParam.MenuItemCode = "0102";
-        mSellOffPresenter.getSellOffList(MethodConstants.GUQING, JsonHelper.getGson().toJson(sellOffParam));
-        mSellOffPresenter.sellOff(MethodConstants.GETGUQING, JsonHelper.getGson().toJson(sellOffParam));
-
-        //上传异常
-        mUploadExPresenter = new UploadExPresenter();
-        mUploadExPresenter.attachView(this);
-        ExceptionParam exceptionParam = new ExceptionParam();
-        exceptionParam.mechanical_num = DeviceUtils.getMacAddress().replace(":", "").toUpperCase();
-        Timber.e("机器编码："+ exceptionParam.mechanical_num);
-        exceptionParam.abnormal_level = "1";
-        exceptionParam.abnormal_type = "机器异常";
-        exceptionParam.abnormal_detail = "机器不正常，电源没打开";
-        exceptionParam.time = DataEncrypt.dataFormatString();
-        exceptionParam.merchant_id = "1";
-        exceptionParam.remark = "请赶紧解决";
-        Timber.e(exceptionParam.toString());
-        mUploadExPresenter.uploadException(MethodConstants.UPDATEMCHNO, JsonHelper.getGson().toJson(exceptionParam));
-
-        //获取物品信息
-        mInformationPresenter = new InformationPresenter();
-        mInformationPresenter.attachView(this);
-        InformationParam informationParam = new InformationParam();
-        informationParam.shopCode = "000005";
-        mInformationPresenter.getInformation(MethodConstants.GETMENU,JsonHelper.getGson().toJson(informationParam));
-
-
-        //下单
-       placeOrderPresenter = new PlaceOrderPresenter();
-        placeOrderPresenter.attachView(this);*/
-
-
-       /* mSliderPresenter = new SliderPresenter();
-        mSliderPresenter.attachView(this);
-        SliderParam sliderParam = new SliderParam();
-        sliderParam.Keys = "kdt123456789";
-        mSliderPresenter.slideShow("5",JsonHelper.getGson().toJson(sliderParam));*/
-
-        //补货
-//        backOrderPresenter = new BackOrderPresenter();
-//        backOrderPresenter.attachView(this);
-//        BackOrderParam backOrderParam = ParamObtainUtil.getBackOrderParam(10,11);
-//        backOrderPresenter.getBackOrderInfo(MethodConstants.BACK_ORDER,JsonHelper.getGson().toJson(backOrderParam));
 
         //物品库存清零
         mClearStockPresenter = new ClearStockPresenter();
@@ -286,7 +237,7 @@ public class GuqingTestActivity extends BaseActivity implements SellOffView ,Upl
     public void SliderSuccess() {}
 
     @Override
-    public void BackOrderSuccess() {}
+    public void backOrderSuccess() {}
 
     @Override
     public void clearStockSuccess(ClearStockModel strMsg) {}

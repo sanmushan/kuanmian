@@ -449,11 +449,11 @@ public abstract class BaseMenageActivity extends BaseActivity implements CostCar
     }
 
     @Override
-    public void BackOrderSuccess() {
+    public void backOrderSuccess() {
     }
 
     @Override
     public void showNetError(String error) {
-//        showError(error);
+        showError(error);
     }
 }

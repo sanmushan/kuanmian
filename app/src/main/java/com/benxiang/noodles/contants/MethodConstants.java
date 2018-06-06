@@ -22,8 +22,12 @@ public class MethodConstants {
     public static final String BACK_ORDER = "QTRK";//补货==============================================》没完善
     public static final String SHOPCODE = PreferenceUtil.config().getMacNo(Constants.MAC_NO);//门店编号，和LID的值相同
     public static final String CLEARSTOCK = "ClearStock";//物品库存清零
-    public static final String ADDORDERITEM = "AddOrderItem";//物品库存清零
+    public static final String ADDORDERITEM = "AddOrderItem";//加菜
     public static final String ORDER_STATUS_ID = "SetBillStatusByID";
     //成本卡    LINBIN
     public static final String COST_CARD_DATA = "GetCostCard";
+
+    public static final String BANNER = "5";
+    public static final String BANNER_KEYS = "kdt123456789";
+    public static final String CONTENT_TYPE = "application/x-www-form-urlencoded";
 }

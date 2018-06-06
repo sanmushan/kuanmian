@@ -28,7 +28,7 @@ public class BackOrderPresenter extends RxBasePresenter<BackOrderView> {
                     public void accept(@NonNull CommonModel<StrMsgCommonModel> commonModel) throws Exception {
                         Timber.e("补货获取的信息："+ JsonHelper.getGson().toJson(commonModel));
                         if (commonModel.status == 1 && commonModel.strMsg.Result.equals("1")) {
-                            view.BackOrderSuccess();
+                            view.backOrderSuccess();
                         } else {
                             view.showNetError("网络异常");
                         }

@@ -6,4 +6,6 @@ package com.benxiang.noodles.model.Slider;
 
 public class SliderParam {
     public String Keys;
+    public String LID;
+    public String ContentType;
 }

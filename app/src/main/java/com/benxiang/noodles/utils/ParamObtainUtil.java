@@ -217,8 +217,8 @@ public class ParamObtainUtil {
 
     //获取补货参数
     public static BackOrderParam getBackOrderParam(int noodleCount,int riceCount,int spicyCount,int legCount,int eggCount,int fourCatogoryCount) {
-        String noodle_price = PreferenceUtil.config().getStringValue(Constants.NOODLE_PRICE);
-        String rice_price = PreferenceUtil.config().getStringValue(Constants.RICE_PRICE);
+//        String noodle_price = PreferenceUtil.config().getStringValue(Constants.NOODLE_PRICE);
+//        String rice_price = PreferenceUtil.config().getStringValue(Constants.RICE_PRICE);
         BackOrderParam backOderParam = new BackOrderParam();
         backOderParam.LIDCode = MethodConstants.SHOPCODE;
         List<BackOrderParam.Detail> details = new ArrayList<>();
@@ -301,6 +301,7 @@ public class ParamObtainUtil {
                 break;
             case 3:Timber.e("赠品列表超过3种");
                 break;
+                default:
         }
         return count;
     }
@@ -371,11 +372,11 @@ public class ParamObtainUtil {
     //清除物品信息参数
     public static ClearStockParam getClearStockParam() {
         ClearStockParam clearStockParam = new ClearStockParam();
-//        clearStockParam.LIDCode = MethodConstants.SHOPCODE;
-        clearStockParam.LIDCode = "test";
+        clearStockParam.LIDCode = MethodConstants.SHOPCODE;
 
-        ArrayList<String> list = new ArrayList<String>();
-        list.add("");
+       /* ArrayList<String> list = new ArrayList<String>();
+        list.add("");*/
+
         clearStockParam.ProductCode = "";
 
         return clearStockParam;

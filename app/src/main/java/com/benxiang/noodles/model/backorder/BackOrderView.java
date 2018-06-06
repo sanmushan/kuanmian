@@ -7,5 +7,5 @@ import com.benxiang.noodles.base.BaseView;
  */
 
 public interface BackOrderView extends BaseView {
-    void BackOrderSuccess();
+    void backOrderSuccess();
 }

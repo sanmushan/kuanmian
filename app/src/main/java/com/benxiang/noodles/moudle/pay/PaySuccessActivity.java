@@ -8,6 +8,7 @@ import com.benxiang.noodles.BuildConfig;
 import com.benxiang.noodles.R;
 import com.benxiang.noodles.base.BaseActivity;
 import com.benxiang.noodles.contants.Constants;
+import com.benxiang.noodles.contants.DbTypeContants;
 import com.benxiang.noodles.contants.MethodConstants;
 import com.benxiang.noodles.model.NoodleTradeModel;
 import com.benxiang.noodles.model.addMeal.AddOrderItemModel;
@@ -19,7 +20,9 @@ import com.benxiang.noodles.model.placeorder.PlaceOrderParam;
 import com.benxiang.noodles.model.placeorder.PlaceOrderPresenter;
 import com.benxiang.noodles.model.placeorder.PlaceOrderView;
 import com.benxiang.noodles.moudle.luckydraw.LuckyDrawActivity;
+import com.benxiang.noodles.moudle.makenoodle.ExceptionParam;
 import com.benxiang.noodles.moudle.makenoodle.NoodlesMakeActivity;
+import com.benxiang.noodles.moudle.makenoodle.UploadExPresenter;
 import com.benxiang.noodles.utils.DataEncrypt;
 import com.benxiang.noodles.utils.JsonHelper;
 import com.benxiang.noodles.utils.NoodleDataUtil;
@@ -51,6 +54,7 @@ public class PaySuccessActivity extends BaseActivity implements PaySuccessView, 
     private PaySuccessPresenter mPaySuccessPresenter;
     private PlaceOrderPresenter placeOrderPresenter;
     private AddOrderItemPresenter mAddOrderItemPresenter;
+    UploadExPresenter mUploadExPresenter;
     private String payItemTime = DataEncrypt.dataFormat();
 
     @Override
@@ -78,7 +82,10 @@ public class PaySuccessActivity extends BaseActivity implements PaySuccessView, 
         placeOrderPresenter=new PlaceOrderPresenter();
         placeOrderPresenter.attachView(this);
 
-        Log.e(TAG, "payWay: " + payWay);
+        mUploadExPresenter = new UploadExPresenter();
+        mUploadExPresenter.attachView(this);
+
+        Log.e(TAG, "initView: " + payWay);
 
         ToPlaceOrder();
         if (BuildConfig.DEBUG){
@@ -101,7 +108,6 @@ public class PaySuccessActivity extends BaseActivity implements PaySuccessView, 
                     startRefundment(PaySuccessActivity.this, LuckyDrawActivity.class, mNoodleTradeModel, payWay);
                 }else {
                     dbTest(ShotrNoUtil.getShotrNo(true), mNoodleTradeModel);
-
                     startRefundment(PaySuccessActivity.this, NoodlesMakeActivity.class, mNoodleTradeModel, payWay);
                 }
                 finish();
@@ -114,6 +120,8 @@ public class PaySuccessActivity extends BaseActivity implements PaySuccessView, 
 //        Timber.e("下单的参数:"+JsonHelper.getGson().toJson(placeOrderParam));
         placeOrderPresenter.placeOrder(MethodConstants.GREATEORDER, JsonHelper.getGson().toJson(placeOrderParam));
     }
+
+
 
     private void ToRefundment(int payWay) {
         String method = "";
@@ -187,6 +195,54 @@ public class PaySuccessActivity extends BaseActivity implements PaySuccessView, 
 
         //下单完成后加菜
         ToAddOrderItem();
+
+
+        int mianTiao = NoodleDataUtil.getDbNum(DbTypeContants.MIANTIAO);
+        int miFen = NoodleDataUtil.getDbNum(DbTypeContants.MIFEN);
+        int suanLaBao = NoodleDataUtil.getDbNum(DbTypeContants.SUANLABAO);
+        int suanLaJiTui = NoodleDataUtil.getDbNum(DbTypeContants.SUANLAJITUI);
+        int luJiDan = NoodleDataUtil.getDbNum(DbTypeContants.LUJIDANG);
+        int fourCatogory = NoodleDataUtil.getDbNum(DbTypeContants.FOUR_CATEGORY);
+        if (mianTiao <= 5||miFen <= 5||suanLaBao <= 5||suanLaJiTui <= 5||luJiDan <= 5||fourCatogory <= 5){
+            //上传库存预警异常
+            uploadMacException(mianTiao,miFen,suanLaBao,suanLaJiTui,luJiDan,fourCatogory);
+        }
+
+    }
+    private void uploadMacException(int mianTiao, int miFen, int suanLaBao, int suanLaJiTui, int luJiDan, int fourCatogory) {
+        if (mianTiao <= 5){
+            upData("小面",mianTiao);
+        }
+        if (miFen <= 5){
+            upData("米粉",miFen);
+        }
+        if (suanLaBao <= 5){
+            upData("辣包",suanLaBao);
+        }
+        if (luJiDan <= 5){
+            upData("第二品类",luJiDan);
+        }
+        if (suanLaJiTui <= 5){
+            upData("第三品类",suanLaJiTui);
+        }
+        if (fourCatogory <= 5){
+            upData("第四品类",fourCatogory);
+        }
+    }
+
+    private void upData(String str , int i) {
+        ExceptionParam exceptionParam = new ExceptionParam();
+        exceptionParam.mechanical_num = MethodConstants.SHOPCODE;
+        Timber.e("机器编码：" + exceptionParam.mechanical_num);
+        exceptionParam.abnormal_level = "1";
+        exceptionParam.abnormal_type = "库存预警";
+        exceptionParam.abnormal_detail = "库存预警：" + str + "剩余库存" + i + "份";
+        exceptionParam.time = DataEncrypt.dataFormatString();
+        exceptionParam.merchant_id = "1";
+        exceptionParam.remark = "库存预警,请尽快补全库存";
+        exceptionParam.LIDCode = MethodConstants.SHOPCODE;
+        Timber.e("库存预警参数"+JsonHelper.getGson().toJson(exceptionParam));
+        mUploadExPresenter.mTb(MethodConstants.UPDATEMCHNO, JsonHelper.getGson().toJson(exceptionParam));
     }
 
     @Override

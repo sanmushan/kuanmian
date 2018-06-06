@@ -25,7 +25,6 @@ import java.util.Date;
 public class VideoActivity extends AppCompatActivity {
     VideoView videoView;
     RelativeLayout relativeLayout;
-    protected String format;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +58,7 @@ public class VideoActivity extends AppCompatActivity {
                     @Override
                     public void onPrepared(MediaPlayer mediaPlayer) {
                         if (time >= 22 || time <= 8){//|| mTime < 8
+                            //全屏
                             mediaPlayer.setVolume(0f, 0f);
                         }
                         mediaPlayer.start();

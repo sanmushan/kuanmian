@@ -376,13 +376,11 @@ public class NoodlesMakeActivity extends BaseActivity implements UplaodExView {
     @Override
     public void refundmentExSuccess() {
         dealWithRefundmentResult(getString(R.string.return_back));
-//        dealWithRefundmentResult("退款成功，请查收");
     }
 
     @Override
     public void refundmentFaile() {
         dealWithRefundmentResult(getString(R.string.return_back_faile));
-//        dealWithRefundmentResult("退款失败,请联系13392291818");
     }
 
     @Override

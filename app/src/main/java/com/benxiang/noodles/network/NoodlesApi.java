@@ -18,6 +18,7 @@ import com.benxiang.noodles.model.remote.RecipeModle;
 import com.benxiang.noodles.model.remote.ReliefModle;
 import com.benxiang.noodles.model.remote.StrMsgCommonModel;
 import com.benxiang.noodles.model.selloff.SellOffListInfoModel;
+import com.benxiang.noodles.moudle.banner.BannerModel;
 
 import java.util.Map;
 
@@ -159,6 +160,12 @@ public interface NoodlesApi {
     @FormUrlEncoded  //post请求必须加上
     @POST("STTXApi.ashx")
     Observable<CommonModel<CostCardDataModel>> getCostCardData(@FieldMap Map<String, String> map);
+
+
+    //获取Banner
+    @FormUrlEncoded  //post请求必须加上
+    @POST("AppDataApi.ashx")
+    Observable<CommonModel<BannerModel>> getBannerData(@FieldMap Map<String, String> map);
 
 }
 

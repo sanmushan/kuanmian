@@ -164,5 +164,39 @@ public class UploadExPresenter extends RxBasePresenter<UplaodExView> {
                     }
                 });
     }
+
+    //库存预警信息
+    public void mTb(String method, String json) {
+        getInitchargingPieApi()
+                .uploadException(NoodlesParams.commonMethod(method, json))
+                .compose(RxUtil.<CommonModel<StrMsgCommonModel>>toMain())
+                .subscribe(new Observer<CommonModel<StrMsgCommonModel>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(CommonModel<StrMsgCommonModel> commonModel) {
+                        Timber.e("库存预警参数："+ JsonHelper.getGson().toJson(commonModel));
+                        if (commonModel.status == 1 && commonModel.strMsg.Result.equals("1")) {
+//                            view.UplaodExSuccess();
+                        } else {
+//                            view.showNetError(commonModel.strRes);
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+//                        view.showNetError();
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
 }
 

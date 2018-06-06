@@ -67,7 +67,8 @@ public class OrderMealNumActivity extends BaseActivity implements OrderMealNumVi
     protected void afterContentViewSet() {
         registerMainHandler();
         initView();
-        setEnableCountdown(true);
+        //倒计时，30秒内不输入取餐码取餐则退出此界面
+        setEnableCountdown(true,30);
     }
 
     @Override

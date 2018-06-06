@@ -21,13 +21,13 @@ public class PreferenceKey {
 
     public static int OIL_DEFAULT = 70;
     /**
-     * 卤水
+     * 卤水  30
      */
     public static int BRINE_DEFAULT = 30;
     /**
      * 醋
      */
-    public static int VINEGAR_DEFAULT = 45;
+    public static int VINEGAR_DEFAULT = 54;
     /**
      * 加热时长
      */

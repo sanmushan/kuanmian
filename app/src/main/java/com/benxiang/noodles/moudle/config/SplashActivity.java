@@ -105,7 +105,7 @@ public class SplashActivity extends BaseActivity implements SplashView {
         if (BuildConfig.IS_MANY_POWL){
             if (!ServiceUtils.isServiceRunning("com.benxiang.noodles.serialport.service.MakeNoodlesService")){
                 //TODO LIN 如需在模拟器上运行，请屏蔽下面代码
-                ServiceUtils.startService(MakeNoodlesService.class);
+//                ServiceUtils.startService(MakeNoodlesService.class);
             }
         }
         startActivity(intent);
@@ -140,9 +140,9 @@ public class SplashActivity extends BaseActivity implements SplashView {
 //        }
 
         //TODO LIN 机器上运行
-        writeFormula();
+//        writeFormula();
 //        模拟器上运行
-//        startNext();
+        startNext();
     }
 
     @Override
